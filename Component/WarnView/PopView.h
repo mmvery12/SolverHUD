@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #define WarnViewPercent 0.618
 #define WarnViewHeight 74
-#define WarnViewAlpha 0.5
+#define WarnViewAlpha 0.7
 #ifndef ipad
 #define ipad [[[UIDevice currentDevice] model] hasPrefix:@"ipad"]
 #endif

@@ -53,6 +53,7 @@
     {
         if (window.joinQueue) {
             __weak PopWindow *tempWindow;
+            __weak PopWindow *temp2 = window;
             switch ([window decsription]) {
                 case Wait:
                     tempWindow = [instance.waitArr lastObject];
@@ -65,12 +66,27 @@
                 default:
                     break;
             }
-            if (tempWindow) {
+            if (tempWindow&&tempWindow.isShow) {
                 tempWindow.next = ^{
-                    [instance show:window];
+                    [instance show:temp2];
                 };
             }else
+            {
+                if (tempWindow&&!tempWindow.isShow) {
+                    switch ([window decsription]) {
+                        case Wait:
+                            [instance.waitArr removeObject:tempWindow];
+                            break;
+                        case NetWork:
+                            [instance.netWorkArr removeObject:tempWindow];
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 [instance show:window];
+            }
+            
         }else
             [instance show:window];
     }
@@ -87,11 +103,15 @@
 
 -(void)show:(PopWindow *)wins
 {
-    __block PopWindow *win = wins;
+    __weak PopWindow *win = wins;
     __weak PopSingleInstance *instance = self;
     [win makeKeyAndVisible];
     win.transform = CGAffineTransformMakeScale(0.8, 0.8);
     win.alpha = 0.8;
+    @synchronized(self)
+    {
+        win.isShow = YES;
+    }
     [UIView animateWithDuration:win.animate?animatetime:0 animations:^{
         win.transform = CGAffineTransformIdentity;
         win.alpha = 1;
@@ -104,16 +124,20 @@
 
 -(void)hidden:(PopWindow *)wins
 {
-    __block PopWindow *win = wins;
+    __weak PopWindow *win = wins;
     [UIView animateWithDuration:win.animate?animatetime:0 animations:^{
         win.transform = CGAffineTransformMakeScale(0.8, 0.8);
         win.alpha = 0.3;
     } completion:^(BOOL finished) {
-        if (win.joinQueue && win.next) {
-            win.next();
+        @synchronized(self)
+        {
+            win.isShow = NO;
+            if (win.joinQueue && win.next) {
+                win.next();
+            }
+            [win resignKeyWindow];
+            win.hidden = YES;
         }
-        [win resignKeyWindow];
-        win.hidden = YES;
     }];
 }
 @end

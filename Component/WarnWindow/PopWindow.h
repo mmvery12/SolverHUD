@@ -20,6 +20,7 @@ typedef enum {
 -(WarnStyle)decsription;
 
 +(void)forceDismiss:(PopWindow *)window;
+@property (nonatomic,assign) BOOL isShow;
 @property (nonatomic,assign)BOOL joinQueue;
 @property (nonatomic,assign)BOOL animate;
 @property (nonatomic,assign)NSTimeInterval time;

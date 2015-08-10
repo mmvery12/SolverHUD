@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9D79568D-B2C2-4423-9AB1-31356BC244D5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PopFlow</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E60FDE0A001C3D7448A1FE3B5250B42F90B6AE31</key>
+		<string>https://github.com/mmvery12/PopFlow.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PopFlow.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E60FDE0A001C3D7448A1FE3B5250B42F90B6AE31</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mmvery12/PopFlow.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E60FDE0A001C3D7448A1FE3B5250B42F90B6AE31</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E60FDE0A001C3D7448A1FE3B5250B42F90B6AE31</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PopFlow</string>
+		</dict>
+	</array>
+</dict>
+</plist>

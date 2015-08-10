@@ -45,48 +45,57 @@
 
 +(UIView *)ShowWarnViewSuccess:(NSString *)string during:(NSTimeInterval)time  joinQueue:(BOOL)join animate:(BOOL)animate
 {
-    CGSize size = CGSizeZero;
-    if (string) {
-        size = [string sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:CGSizeMake(1000, 1000) lineBreakMode:NSLineBreakByCharWrapping];
-    }
-    CGFloat tal = 60+size.width;
-    PopView *cover = [PopView panner:tal height:60 allBlack:NO];
+    CGRect rect = CGRectZero;
     CGFloat width = ipad?60:44;
-    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, (60-width)/2.0, width, width)];
+    if (string) {
+        rect = [string boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width*WarnViewPercent-width-10-10, 10000000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} context:nil];
+        
+    }
+    CGFloat tal = rect.size.width+width+10+10;
+    CGFloat height = 10+rect.size.height+10;
+    PopView *cover = [PopView panner:tal height:height allBlack:NO];
+    
+    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, (height-width)/2.0, width, width)];
     image.contentMode = UIViewContentModeCenter;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"png" inDirectory:@"WarnViewBundle.bundle"];
     image.image = [UIImage imageWithContentsOfFile:path];
     [cover.blackPan addSubview:image];
     if (string) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(image.frame.size.width+image.frame.origin.x, 0, size.width, 60)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(image.frame.size.width+image.frame.origin.x, 0, rect.size.width, height)];
         label.backgroundColor = [UIColor clearColor];
         label.text = string;
+        label.numberOfLines = 0;
         label.textColor = [UIColor whiteColor];
         [cover.blackPan addSubview:label];
+        label.font = [UIFont systemFontOfSize:20];
     }
     return [PopViewOfWorkFlow WarnWindowAddView:cover during:time joinQueue:join animate:animate];
 }
 
 +(UIView *)ShowWarnViewError:(NSString *)string during:(NSTimeInterval)time  joinQueue:(BOOL)join animate:(BOOL)animate
 {
-    CGSize size = CGSizeZero;
-    if (string) {
-        size = [string sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:CGSizeMake(1000, 1000) lineBreakMode:NSLineBreakByCharWrapping];
-    }
-    CGFloat tal = 60+size.width;
-    PopView *cover = [PopView panner:tal height:60 allBlack:NO];
+    CGRect rect = CGRectZero;
     CGFloat width = ipad?60:44;
-    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, (60-width)/2.0, width, width)];
+    if (string) {
+        rect = [string boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width*WarnViewPercent-width-10-10, 10000000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} context:nil];
+        
+    }
+    CGFloat tal = rect.size.width+width+10+10;
+    CGFloat height = 10+rect.size.height+10;
+    PopView *cover = [PopView panner:tal height:height allBlack:NO];
+    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, (height-width)/2.0, width, width)];
     image.contentMode = UIViewContentModeCenter;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"error" ofType:@"png" inDirectory:@"WarnViewBundle.bundle"];
     image.image = [UIImage imageWithContentsOfFile:path];
     [cover.blackPan addSubview:image];
     if (string) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(image.frame.size.width+image.frame.origin.x, 0, size.width, 60)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(image.frame.size.width+image.frame.origin.x, 0, rect.size.width, height)];
         label.backgroundColor = [UIColor clearColor];
         label.text = string;
+        label.numberOfLines = 0;
         label.textColor = [UIColor whiteColor];
         [cover.blackPan addSubview:label];
+        label.font = [UIFont systemFontOfSize:20];
     }
     return [PopViewOfWorkFlow WarnWindowAddView:cover during:time joinQueue:join animate:animate];
 }

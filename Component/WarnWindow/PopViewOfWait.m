@@ -58,9 +58,6 @@
 +(UIView *)ShowWarnViewWaitingGif:(NSString *)string animate:(BOOL)animate
 {
     UIView *cover = [PopView panner:200 height:200 allBlack:YES];
-//    SCGIFImageView *scGIf = [[SCGIFImageView alloc] initWithGIFFile:[[NSBundle mainBundle] pathForResource:@"loading_cartoon" ofType:@"gif"]];
-//    scGIf.frame = CGRectMake((cover.frame.size.width - 134)/2.0, (cover.frame.size.height-142)/2.0, 134, 142);
-//    [cover addSubview:scGIf];
     UIWindow *window = [PopViewOfWait WarnWindowAddView:cover animate:animate];
     return window;
 }
