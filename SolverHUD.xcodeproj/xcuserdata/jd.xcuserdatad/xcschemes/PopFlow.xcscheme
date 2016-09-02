@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "20D17F4C1A788DD000C52D5D"
-               BuildableName = "PopFlow.app"
+               BuildableName = "SolverHUD.app"
                BlueprintName = "SolverHUD"
                ReferencedContainer = "container:SolverHUD.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20D17F4C1A788DD000C52D5D"
-            BuildableName = "PopFlow.app"
+            BuildableName = "SolverHUD.app"
             BlueprintName = "SolverHUD"
             ReferencedContainer = "container:SolverHUD.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20D17F4C1A788DD000C52D5D"
-            BuildableName = "PopFlow.app"
+            BuildableName = "SolverHUD.app"
             BlueprintName = "SolverHUD"
             ReferencedContainer = "container:SolverHUD.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20D17F4C1A788DD000C52D5D"
-            BuildableName = "PopFlow.app"
+            BuildableName = "SolverHUD.app"
             BlueprintName = "SolverHUD"
             ReferencedContainer = "container:SolverHUD.xcodeproj">
          </BuildableReference>

@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SolverHUD.h"
 #define animatetime 0.2
-@class PopWindow;
+@class SolverHUDWindow;
 typedef void (^VoidBlock) (void);
-@interface PopSingleInstance : NSObject
+@interface SolverHUDShareInstance : NSObject
 {
     BOOL _isSuspend;
 }
 -(void)setSuspended:(BOOL)suspend;
 -(BOOL)isSuspend;
-+(PopSingleInstance *)warSingleInstance;
-+(void)ShowWarn:(PopWindow *)window;
-+(void)forceDismissWin:(PopWindow *)win;
++(void)ShowSolverHUD:(SolverHUD *)hud;
++(void)DisappearSolverHUD:(SolverHUD *)hud;
 @end
 

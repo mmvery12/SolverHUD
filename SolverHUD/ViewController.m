@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "Pop.h"
+#import "SolverHUDConf.h"
 @interface ViewController ()
 
 @end
@@ -20,12 +20,9 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    PopViewOfWait *temp = [PopViewOfWait ShowWarnViewWaitingActivity:@"" animate:YES];
+    [SolverHUDWorkFlow ScheduledShowWorkFlow:YES inView:self.view position:SolverHUDMiddlePosition catchUserInteraction:YES showWithanimate:YES during:3];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [PopSingleInstance forceDismissWin:temp];
-        [PopViewOfWorkFlow ShowWarnViewSuccess:@"abc" during:2 joinQueue:YES animate:YES];
-        [PopViewOfWorkFlow ShowWarnViewError:@"defasdasda啊实打实大的大撒上点123" during:2 joinQueue:YES animate:YES];
-        [PopViewOfNetWork ShowWarnNoNetClient:@"大师大师大师的撒的213qweqwe" during:2 joinQueue:YES animate:YES];
+        
     });
 }
 

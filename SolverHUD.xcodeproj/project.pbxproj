@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20D17F841A788DF300C52D5D /* PopSingleInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D17F781A788DF300C52D5D /* PopSingleInstance.m */; };
-		20D17F991A788F1000C52D5D /* PopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D17F8E1A788F1000C52D5D /* PopView.m */; };
-		20D17F9A1A788F1000C52D5D /* WarnViewBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 20D17F901A788F1000C52D5D /* WarnViewBundle.bundle */; };
-		20D17F9B1A788F1000C52D5D /* PopViewOfNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D17F921A788F1000C52D5D /* PopViewOfNetWork.m */; };
-		20D17F9C1A788F1000C52D5D /* PopViewOfWait.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D17F941A788F1000C52D5D /* PopViewOfWait.m */; };
-		20D17F9D1A788F1000C52D5D /* PopViewOfWorkFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D17F961A788F1000C52D5D /* PopViewOfWorkFlow.m */; };
-		20D17F9E1A788F1000C52D5D /* PopWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D17F981A788F1000C52D5D /* PopWindow.m */; };
 		692108DE1D795E690075C2E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 692108D41D795E690075C2E6 /* AppDelegate.m */; };
 		692108DF1D795E690075C2E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692108D51D795E690075C2E6 /* LaunchScreen.xib */; };
 		692108E01D795E690075C2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692108D71D795E690075C2E6 /* Main.storyboard */; };
@@ -21,24 +14,18 @@
 		692108E21D795E690075C2E6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 692108DA1D795E690075C2E6 /* Info.plist */; };
 		692108E31D795E690075C2E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 692108DB1D795E690075C2E6 /* main.m */; };
 		692108E41D795E690075C2E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692108DD1D795E690075C2E6 /* ViewController.m */; };
+		6921090F1D7964B60075C2E6 /* SolverHUDShareInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 692108FF1D7964B60075C2E6 /* SolverHUDShareInstance.m */; };
+		692109111D7964B60075C2E6 /* SolverHUDViewBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 692109041D7964B60075C2E6 /* SolverHUDViewBundle.bundle */; };
+		692109181D7965840075C2E6 /* SolverHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109171D7965840075C2E6 /* SolverHUD.m */; };
+		6921091B1D796D030075C2E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6921091A1D796D030075C2E6 /* QuartzCore.framework */; };
+		6921091E1D796DAA0075C2E6 /* SolverHUDWorkFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6921091D1D796DAA0075C2E6 /* SolverHUDWorkFlow.m */; };
+		692109211D796DC20075C2E6 /* SolverHUDNetStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109201D796DC20075C2E6 /* SolverHUDNetStatus.m */; };
+		692109241D796DD80075C2E6 /* SolverHUDWaitingDalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */; };
+		692109271D796F150075C2E6 /* SolverHUDGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109261D796F150075C2E6 /* SolverHUDGIF.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		20D17F4D1A788DD000C52D5D /* SolverHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolverHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		20D17F771A788DF300C52D5D /* PopSingleInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopSingleInstance.h; sourceTree = "<group>"; };
-		20D17F781A788DF300C52D5D /* PopSingleInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopSingleInstance.m; sourceTree = "<group>"; };
-		20D17F8B1A788E6B00C52D5D /* Pop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pop.h; sourceTree = "<group>"; };
-		20D17F8D1A788F1000C52D5D /* PopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopView.h; sourceTree = "<group>"; };
-		20D17F8E1A788F1000C52D5D /* PopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopView.m; sourceTree = "<group>"; };
-		20D17F901A788F1000C52D5D /* WarnViewBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WarnViewBundle.bundle; sourceTree = "<group>"; };
-		20D17F911A788F1000C52D5D /* PopViewOfNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewOfNetWork.h; sourceTree = "<group>"; };
-		20D17F921A788F1000C52D5D /* PopViewOfNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewOfNetWork.m; sourceTree = "<group>"; };
-		20D17F931A788F1000C52D5D /* PopViewOfWait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewOfWait.h; sourceTree = "<group>"; };
-		20D17F941A788F1000C52D5D /* PopViewOfWait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewOfWait.m; sourceTree = "<group>"; };
-		20D17F951A788F1000C52D5D /* PopViewOfWorkFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewOfWorkFlow.h; sourceTree = "<group>"; };
-		20D17F961A788F1000C52D5D /* PopViewOfWorkFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewOfWorkFlow.m; sourceTree = "<group>"; };
-		20D17F971A788F1000C52D5D /* PopWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopWindow.h; sourceTree = "<group>"; };
-		20D17F981A788F1000C52D5D /* PopWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopWindow.m; sourceTree = "<group>"; };
 		692108D31D795E690075C2E6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		692108D41D795E690075C2E6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		692108D61D795E690075C2E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -48,6 +35,22 @@
 		692108DB1D795E690075C2E6 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		692108DC1D795E690075C2E6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		692108DD1D795E690075C2E6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		692108FE1D7964B60075C2E6 /* SolverHUDShareInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDShareInstance.h; sourceTree = "<group>"; };
+		692108FF1D7964B60075C2E6 /* SolverHUDShareInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDShareInstance.m; sourceTree = "<group>"; };
+		692109041D7964B60075C2E6 /* SolverHUDViewBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SolverHUDViewBundle.bundle; sourceTree = "<group>"; };
+		6921090E1D7964B60075C2E6 /* SolverHUDConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDConf.h; sourceTree = "<group>"; };
+		692109161D7965840075C2E6 /* SolverHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUD.h; sourceTree = "<group>"; };
+		692109171D7965840075C2E6 /* SolverHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUD.m; sourceTree = "<group>"; };
+		692109191D796BEF0075C2E6 /* SolverHUDDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDDelegate.h; sourceTree = "<group>"; };
+		6921091A1D796D030075C2E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6921091C1D796DAA0075C2E6 /* SolverHUDWorkFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWorkFlow.h; sourceTree = "<group>"; };
+		6921091D1D796DAA0075C2E6 /* SolverHUDWorkFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWorkFlow.m; sourceTree = "<group>"; };
+		6921091F1D796DC20075C2E6 /* SolverHUDNetStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDNetStatus.h; sourceTree = "<group>"; };
+		692109201D796DC20075C2E6 /* SolverHUDNetStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDNetStatus.m; sourceTree = "<group>"; };
+		692109221D796DD80075C2E6 /* SolverHUDWaitingDalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWaitingDalog.h; sourceTree = "<group>"; };
+		692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWaitingDalog.m; sourceTree = "<group>"; };
+		692109251D796F150075C2E6 /* SolverHUDGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDGIF.h; sourceTree = "<group>"; };
+		692109261D796F150075C2E6 /* SolverHUDGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDGIF.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6921091B1D796D030075C2E6 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +68,7 @@
 		20D17F441A788DD000C52D5D = {
 			isa = PBXGroup;
 			children = (
+				6921091A1D796D030075C2E6 /* QuartzCore.framework */,
 				692108D21D795E690075C2E6 /* SolverHUD */,
 				20D17F761A788DF300C52D5D /* Component */,
 				20D17F4E1A788DD000C52D5D /* Products */,
@@ -81,38 +86,10 @@
 		20D17F761A788DF300C52D5D /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				20D17F8C1A788F1000C52D5D /* WarnView */,
-				20D17F8F1A788F1000C52D5D /* WarnWindow */,
-				20D17F771A788DF300C52D5D /* PopSingleInstance.h */,
-				20D17F781A788DF300C52D5D /* PopSingleInstance.m */,
-				20D17F8B1A788E6B00C52D5D /* Pop.h */,
+				692108FC1D7964B60075C2E6 /* Private */,
+				6921090D1D7964B60075C2E6 /* Public */,
 			);
 			path = Component;
-			sourceTree = "<group>";
-		};
-		20D17F8C1A788F1000C52D5D /* WarnView */ = {
-			isa = PBXGroup;
-			children = (
-				20D17F8D1A788F1000C52D5D /* PopView.h */,
-				20D17F8E1A788F1000C52D5D /* PopView.m */,
-			);
-			path = WarnView;
-			sourceTree = "<group>";
-		};
-		20D17F8F1A788F1000C52D5D /* WarnWindow */ = {
-			isa = PBXGroup;
-			children = (
-				20D17F901A788F1000C52D5D /* WarnViewBundle.bundle */,
-				20D17F911A788F1000C52D5D /* PopViewOfNetWork.h */,
-				20D17F921A788F1000C52D5D /* PopViewOfNetWork.m */,
-				20D17F931A788F1000C52D5D /* PopViewOfWait.h */,
-				20D17F941A788F1000C52D5D /* PopViewOfWait.m */,
-				20D17F951A788F1000C52D5D /* PopViewOfWorkFlow.h */,
-				20D17F961A788F1000C52D5D /* PopViewOfWorkFlow.m */,
-				20D17F971A788F1000C52D5D /* PopWindow.h */,
-				20D17F981A788F1000C52D5D /* PopWindow.m */,
-			);
-			path = WarnWindow;
 			sourceTree = "<group>";
 		};
 		692108D21D795E690075C2E6 /* SolverHUD */ = {
@@ -129,6 +106,59 @@
 				692108DD1D795E690075C2E6 /* ViewController.m */,
 			);
 			path = SolverHUD;
+			sourceTree = "<group>";
+		};
+		692108FC1D7964B60075C2E6 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				692108FD1D7964B60075C2E6 /* SolverHUDShareInstance */,
+				692109001D7964B60075C2E6 /* SolverHUDView */,
+				692109031D7964B60075C2E6 /* SolverHUDWindow */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		692108FD1D7964B60075C2E6 /* SolverHUDShareInstance */ = {
+			isa = PBXGroup;
+			children = (
+				692108FE1D7964B60075C2E6 /* SolverHUDShareInstance.h */,
+				692108FF1D7964B60075C2E6 /* SolverHUDShareInstance.m */,
+			);
+			path = SolverHUDShareInstance;
+			sourceTree = "<group>";
+		};
+		692109001D7964B60075C2E6 /* SolverHUDView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SolverHUDView;
+			sourceTree = "<group>";
+		};
+		692109031D7964B60075C2E6 /* SolverHUDWindow */ = {
+			isa = PBXGroup;
+			children = (
+				692109041D7964B60075C2E6 /* SolverHUDViewBundle.bundle */,
+			);
+			path = SolverHUDWindow;
+			sourceTree = "<group>";
+		};
+		6921090D1D7964B60075C2E6 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				6921090E1D7964B60075C2E6 /* SolverHUDConf.h */,
+				692109191D796BEF0075C2E6 /* SolverHUDDelegate.h */,
+				692109161D7965840075C2E6 /* SolverHUD.h */,
+				692109171D7965840075C2E6 /* SolverHUD.m */,
+				6921091C1D796DAA0075C2E6 /* SolverHUDWorkFlow.h */,
+				6921091D1D796DAA0075C2E6 /* SolverHUDWorkFlow.m */,
+				6921091F1D796DC20075C2E6 /* SolverHUDNetStatus.h */,
+				692109201D796DC20075C2E6 /* SolverHUDNetStatus.m */,
+				692109221D796DD80075C2E6 /* SolverHUDWaitingDalog.h */,
+				692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */,
+				692109251D796F150075C2E6 /* SolverHUDGIF.h */,
+				692109261D796F150075C2E6 /* SolverHUDGIF.m */,
+			);
+			path = Public;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,10 +219,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				692108E01D795E690075C2E6 /* Main.storyboard in Resources */,
+				692109111D7964B60075C2E6 /* SolverHUDViewBundle.bundle in Resources */,
 				692108E11D795E690075C2E6 /* Images.xcassets in Resources */,
 				692108E21D795E690075C2E6 /* Info.plist in Resources */,
 				692108DF1D795E690075C2E6 /* LaunchScreen.xib in Resources */,
-				20D17F9A1A788F1000C52D5D /* WarnViewBundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,15 +233,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20D17F991A788F1000C52D5D /* PopView.m in Sources */,
-				20D17F9D1A788F1000C52D5D /* PopViewOfWorkFlow.m in Sources */,
-				20D17F9B1A788F1000C52D5D /* PopViewOfNetWork.m in Sources */,
 				692108DE1D795E690075C2E6 /* AppDelegate.m in Sources */,
-				20D17F841A788DF300C52D5D /* PopSingleInstance.m in Sources */,
+				6921091E1D796DAA0075C2E6 /* SolverHUDWorkFlow.m in Sources */,
 				692108E41D795E690075C2E6 /* ViewController.m in Sources */,
-				20D17F9C1A788F1000C52D5D /* PopViewOfWait.m in Sources */,
-				20D17F9E1A788F1000C52D5D /* PopWindow.m in Sources */,
+				692109211D796DC20075C2E6 /* SolverHUDNetStatus.m in Sources */,
 				692108E31D795E690075C2E6 /* main.m in Sources */,
+				692109181D7965840075C2E6 /* SolverHUD.m in Sources */,
+				6921090F1D7964B60075C2E6 /* SolverHUDShareInstance.m in Sources */,
+				692109271D796F150075C2E6 /* SolverHUDGIF.m in Sources */,
+				692109241D796DD80075C2E6 /* SolverHUDWaitingDalog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = SolverHUD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = SolverHUD;
@@ -327,6 +358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = SolverHUD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = SolverHUD;
