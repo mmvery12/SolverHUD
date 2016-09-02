@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PopFlow.xcodeproj">
+      location = "self:/Users/jd/Desktop/SolverHUD/SolverHUD.xcodeproj">
    </FileRef>
 </Workspace>
