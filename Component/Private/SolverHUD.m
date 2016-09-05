@@ -208,7 +208,7 @@ typedef void (*SImp)(id, SEL, ...);
 {
     _status = status;
     SEL sel = NSSelectorFromString(@"hudStatusDidChange:");
-    Method meth = (Method)class_getClassMethod(object_getClass(self), sel);
+    Method meth = (Method)class_getInstanceMethod(object_getClass(self), sel);
     if (meth) {
         SImp imp = (SImp)method_getImplementation(meth);
         imp(self,sel,status);

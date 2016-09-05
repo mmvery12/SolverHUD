@@ -25,6 +25,6 @@
 
 -(void)hudStatusDidChange:(SolverHUDStatus)status;
 {
-
+    [super hudStatusDidChange:status];
 }
 @end
