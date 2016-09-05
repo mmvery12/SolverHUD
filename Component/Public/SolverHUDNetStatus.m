@@ -9,11 +9,11 @@
 #import "SolverHUDNetStatus.h"
 
 @implementation SolverHUDNetStatus
-+(SolverHUD *)solverHUD
-{
-    SolverHUDNetStatus *sf = [SolverHUDNetStatus new];
-    sf.frame = CGRectMake(0, 0, 100, 100);
-    sf.backgroundColor = [UIColor blueColor];
-    return sf;
-}
+//+(SolverHUD *)solverHUD
+//{
+//    SolverHUDNetStatus *sf = [SolverHUDNetStatus new];
+//    sf.frame = CGRectMake(0, 0, 100, 100);
+//    sf.backgroundColor = [UIColor blueColor];
+//    return sf;
+//}
 @end

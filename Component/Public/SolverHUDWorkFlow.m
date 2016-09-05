@@ -11,23 +11,6 @@
 @implementation SolverHUDWorkFlow
 
 
-+(SolverHUD *)solverHUD
-{
-    SolverHUDWorkFlow *sf = [SolverHUDWorkFlow new];
-    sf.frame = CGRectMake(0, 0, 100, 100);
-    sf.backgroundColor = [UIColor redColor];
-    return sf;
-}
-+(CAAnimation *)solverHUDShowAnimate
-{
-    return nil;
-}
-
-+(CAAnimation *)solverHUDDisappearAnimate
-{
-    return nil;
-}
-
 +(id)ScheduledShowWorkFlow:(BOOL)workflowsuccess inView:(UIView *)view position:(SolverHUDPosition)position catchUserInteraction:(BOOL)tryCatchUserInteraction showWithanimate:(BOOL)animate during:(NSTimeInterval)during;
 {
     return [super ScheduledShowInView:view position:position catchUserInteraction:tryCatchUserInteraction showWithanimate:animate during:during];
