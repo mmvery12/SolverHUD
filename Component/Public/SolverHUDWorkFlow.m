@@ -18,6 +18,15 @@
     sf.backgroundColor = [UIColor redColor];
     return sf;
 }
++(CAAnimation *)solverHUDShowAnimate
+{
+    return nil;
+}
+
++(CAAnimation *)solverHUDDisappearAnimate
+{
+    return nil;
+}
 
 +(id)ScheduledShowWorkFlow:(BOOL)workflowsuccess inView:(UIView *)view position:(SolverHUDPosition)position catchUserInteraction:(BOOL)tryCatchUserInteraction showWithanimate:(BOOL)animate during:(NSTimeInterval)during;
 {
@@ -29,13 +38,4 @@
     return [super ShowInView:view position:position catchUserInteraction:tryCatchUserInteraction showWithanimate:animate during:during];
 }
 
--(CAKeyframeAnimation *)solverHUDShowAnimate
-{
-    return nil;
-}
-
--(CAKeyframeAnimation *)solverHUDDisappearAnimate
-{
-    return nil;
-}
 @end

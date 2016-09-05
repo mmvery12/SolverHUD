@@ -20,7 +20,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [SolverHUDWorkFlow ScheduledShowWorkFlow:YES inView:self.view position:SolverHUDMiddlePosition catchUserInteraction:YES showWithanimate:YES during:3];
+    [SolverHUDNetStatus ScheduledShowInView:self.view position:SolverHUDBottomPosition catchUserInteraction:YES showWithanimate:YES during:3];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
     });

@@ -8,6 +8,7 @@
 
 #import "SolverHUDShareInstance.h"
 #import <objc/message.h>
+#import <objc/runtime.h>
 @interface SolverHUDShareInstance ()
 @property (nonatomic,strong) NSMutableArray *solverQueueArr;
 @end
@@ -46,20 +47,27 @@
 +(void)ShowSolverHUD:(SolverHUD *)hud_
 {
     __weak SolverHUDShareInstance *instance = [SolverHUDShareInstance shareInstance];
-    SEL sel = NSSelectorFromString(@"setStatus:");
-    objc_msgSend(hud_,sel,SolverHUDNearMallocStatus);
+    [instance perHUD:hud_ status:SolverHUDNearMallocStatus];
     if ([instance isSuspend]) {
         return;
     }
     @synchronized(instance)
     {
+        if ([instance hudShouldAnimate:hud_]) {
+            [hud_ setValue:^(CAAnimation *anio){
+                [instance hudAnimationDidStart:anio];
+            } forKey:@"animateStart"];
+            [hud_ setValue:^(CAAnimation *anio){
+                [instance hudAnimationDidStop:anio];
+            } forKey:@"animateStop"];
+        }
+        
         BOOL join = [hud_ valueForKey:@"joinQueue"];
         if (join && ![instance.solverQueueArr containsObject:hud_]) {
             __weak SolverHUD *lastHud;
             lastHud = [instance.solverQueueArr lastObject];
             [instance.solverQueueArr addObject:hud_];
-            SEL sel = NSSelectorFromString(@"setStatus:");
-            objc_msgSend(hud_,sel,SolverHUDJoinQueueStatus);
+            [instance perHUD:hud_ status:SolverHUDJoinQueueStatus];
             @synchronized (lastHud) {
                 if (lastHud) {
                     dispatch_block_t blt = ^{
@@ -87,43 +95,82 @@
 
 -(void)show:(SolverHUD *)hud_
 {
-    SEL sel = NSSelectorFromString(@"setStatus:");
-    objc_msgSend(hud_,sel,SolverHUDWillshowingStatus);
-    hud_.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    hud_.alpha = 0.8;
-    UIView *view = [hud_ valueForKey:@"showInview"];
+    [self perHUD:hud_ status:SolverHUDWillshowingStatus];
+    UIView *view = [self hudShowInView:hud_];
     [view addSubview:hud_];
-    [UIView animateWithDuration:[hud_ valueForKey:@"showWithAnimate"]?animatetime:0 animations:^{
-        SEL sel = NSSelectorFromString(@"setStatus:");
-        objc_msgSend(hud_,sel,SolverHUDAnimateingStatus);
-        hud_.transform = CGAffineTransformIdentity;
-        hud_.alpha = 1;
-    } completion:^(BOOL finished) {
-        SEL sel = NSSelectorFromString(@"setStatus:");
-        objc_msgSend(hud_,sel,SolverHUDShowingStatus);
-        if (hud_.duringTime!=0) {
-            [self performSelector:@selector(hidden:) withObject:hud_ afterDelay:hud_.duringTime];
+    if ([self hudShouldAnimate:hud_]) {
+        [self perHUD:hud_ status:SolverHUDAnimateingStatus];
+        CAAnimation *anio = [self hudStartAnio:hud_];
+        if (anio) {
+            [hud_.layer addAnimation:anio forKey:@"showWithAnimate"];
         }
-    }];
+    }
 }
 
 -(void)hidden:(SolverHUD *)hud_
 {
-    [UIView animateWithDuration:[hud_ valueForKey:@"showWithAnimate"]?animatetime:0 animations:^{
-        SEL sel = NSSelectorFromString(@"setStatus:");
-        objc_msgSend(hud_,sel,SolverHUDAnimateingStatus);
-        hud_.transform = CGAffineTransformMakeScale(0.8, 0.8);
-        hud_.alpha = 0.3;
-    } completion:^(BOOL finished) {
+    if ([self hudShouldAnimate:hud_]) {
+        [self perHUD:hud_ status:SolverHUDAnimateingStatus];
+        CAAnimation *anio = [self hudStopAnio:hud_];
+        if (anio) {
+            [hud_.layer addAnimation:anio forKey:@"disApWithAnimate"];
+        }
+    }
+}
+
+
+-(void)hudAnimationDidStart:(CAAnimation *)anio
+{
+    SolverHUD *hud_ = objc_getAssociatedObject(anio, @"startAnio");
+    BOOL startanimateType = [objc_getAssociatedObject(anio, @"startanimateType") boolValue];
+    if (startanimateType==0) {
+        [self perHUD:hud_ status:SolverHUDShowingStatus];
+        if (hud_.duringTime!=0) {
+            [self performSelector:@selector(hidden:) withObject:hud_ afterDelay:hud_.duringTime];
+        }
+    }
+}
+
+-(void)hudAnimationDidStop:(CAAnimation *)anio
+{
+    SolverHUD *hud_ = objc_getAssociatedObject(anio, @"stopAnio");
+    BOOL stopanimateType = [objc_getAssociatedObject(anio, @"stopanimateType") boolValue];
+    if (stopanimateType==1) {
         dispatch_block_t blt = [hud_ valueForKey:@"showNext"];
         if (blt) {
             blt();
         }
         [hud_ removeFromSuperview];
         hud_.hidden = YES;
-        SEL sel = NSSelectorFromString(@"setStatus:");
-        objc_msgSend(hud_,sel,SolverHUDDidDisappearStatus);
+        [self perHUD:hud_ status:SolverHUDDidDisappearStatus];
         [self.solverQueueArr removeObject:hud_];
-    }];
+        hud_ = nil;
+    }
+}
+
+-(CAAnimation *)hudStartAnio:(SolverHUD *)hud_
+{
+    return [hud_ valueForKey:@"showAnio"];
+}
+
+-(CAAnimation *)hudStopAnio:(SolverHUD *)hud_
+{
+    return [hud_ valueForKey:@"disAAnio"];
+}
+
+-(UIView *)hudShowInView:(SolverHUD *)hud_
+{
+    return [hud_ valueForKey:@"showInview"];
+}
+
+-(BOOL)hudShouldAnimate:(SolverHUD *)hud_
+{
+    return [hud_ valueForKey:@"showWithAnimate"];
+}
+
+-(void)perHUD:(SolverHUD *)hud_ status:(SolverHUDStatus)status_
+{
+    SEL sel = NSSelectorFromString(@"setStatus:");
+    objc_msgSend(hud_,sel,status_);
 }
 @end

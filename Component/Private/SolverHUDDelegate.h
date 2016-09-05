@@ -13,6 +13,6 @@
 @required
 +(SolverHUD *)solverHUD;
 @optional
-+(CAKeyframeAnimation *)solverHUDShowAnimate;
-+(CAKeyframeAnimation *)solverHUDDisappearAnimate;
++(CAAnimation *)solverHUDShowAnimate;
++(CAAnimation *)solverHUDDisappearAnimate;
 @end

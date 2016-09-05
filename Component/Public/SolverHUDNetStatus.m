@@ -9,13 +9,11 @@
 #import "SolverHUDNetStatus.h"
 
 @implementation SolverHUDNetStatus
--(CAKeyframeAnimation *)solverHUDShowAnimate
++(SolverHUD *)solverHUD
 {
-    return nil;
-}
-
--(CAKeyframeAnimation *)solverHUDDisappearAnimate
-{
-    return nil;
+    SolverHUDNetStatus *sf = [SolverHUDNetStatus new];
+    sf.frame = CGRectMake(0, 0, 100, 100);
+    sf.backgroundColor = [UIColor blueColor];
+    return sf;
 }
 @end
