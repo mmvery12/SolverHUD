@@ -22,7 +22,7 @@
 		692109211D796DC20075C2E6 /* SolverHUDNetStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109201D796DC20075C2E6 /* SolverHUDNetStatus.m */; };
 		692109241D796DD80075C2E6 /* SolverHUDWaitingDalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */; };
 		692109271D796F150075C2E6 /* SolverHUDGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109261D796F150075C2E6 /* SolverHUDGIF.m */; };
-		69E25E881D7D654300D55E5F /* SolerHUDWorkFlowSuccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E25E871D7D654300D55E5F /* SolerHUDWorkFlowSuccess.m */; };
+		69E25E881D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E25E871D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m */; };
 		69E25E8B1D7D656E00D55E5F /* SolverHUDWorkFlowFailed.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E25E8A1D7D656E00D55E5F /* SolverHUDWorkFlowFailed.m */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +53,8 @@
 		692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWaitingDalog.m; sourceTree = "<group>"; };
 		692109251D796F150075C2E6 /* SolverHUDGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDGIF.h; sourceTree = "<group>"; };
 		692109261D796F150075C2E6 /* SolverHUDGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDGIF.m; sourceTree = "<group>"; };
-		69E25E861D7D654300D55E5F /* SolerHUDWorkFlowSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolerHUDWorkFlowSuccess.h; sourceTree = "<group>"; };
-		69E25E871D7D654300D55E5F /* SolerHUDWorkFlowSuccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolerHUDWorkFlowSuccess.m; sourceTree = "<group>"; };
+		69E25E861D7D654300D55E5F /* SolverHUDWorkFlowSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWorkFlowSuccess.h; sourceTree = "<group>"; };
+		69E25E871D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWorkFlowSuccess.m; sourceTree = "<group>"; };
 		69E25E891D7D656E00D55E5F /* SolverHUDWorkFlowFailed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWorkFlowFailed.h; sourceTree = "<group>"; };
 		69E25E8A1D7D656E00D55E5F /* SolverHUDWorkFlowFailed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWorkFlowFailed.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,8 +139,8 @@
 				692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */,
 				692109251D796F150075C2E6 /* SolverHUDGIF.h */,
 				692109261D796F150075C2E6 /* SolverHUDGIF.m */,
-				69E25E861D7D654300D55E5F /* SolerHUDWorkFlowSuccess.h */,
-				69E25E871D7D654300D55E5F /* SolerHUDWorkFlowSuccess.m */,
+				69E25E861D7D654300D55E5F /* SolverHUDWorkFlowSuccess.h */,
+				69E25E871D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m */,
 				69E25E891D7D656E00D55E5F /* SolverHUDWorkFlowFailed.h */,
 				69E25E8A1D7D656E00D55E5F /* SolverHUDWorkFlowFailed.m */,
 			);
@@ -219,7 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69E25E881D7D654300D55E5F /* SolerHUDWorkFlowSuccess.m in Sources */,
+				69E25E881D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m in Sources */,
 				692108DE1D795E690075C2E6 /* AppDelegate.m in Sources */,
 				6921091E1D796DAA0075C2E6 /* SolverHUDWorkFlow.m in Sources */,
 				692108E41D795E690075C2E6 /* ViewController.m in Sources */,

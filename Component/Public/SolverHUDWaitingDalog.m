@@ -9,13 +9,22 @@
 #import "SolverHUDWaitingDalog.h"
 
 @implementation SolverHUDWaitingDalog
--(CAKeyframeAnimation *)solverHUDShowAnimate
++(SolverHUD *)solverHUD
 {
-    return nil;
+    SolverHUDWaitingDalog *sf = [SolverHUDWaitingDalog new];
+    sf.frame = CGRectMake(0, 0, 100, 100);
+    sf.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.6];
+    UIImageView *image = [UIImageView new];
+    image.frame = sf.bounds;
+    [sf addSubview:image];
+    image.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"success" ofType:@"png" inDirectory:@"SolverHUDViewBundle.bundle"]];
+    sf.layer.cornerRadius = 10;
+    sf.layer.masksToBounds = YES;
+    return sf;
 }
 
--(CAKeyframeAnimation *)solverHUDDisappearAnimate
+-(void)hudStatusDidChange:(SolverHUDStatus)status;
 {
-    return nil;
+
 }
 @end

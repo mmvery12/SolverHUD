@@ -10,7 +10,8 @@
 #define SolverHUDConf_h
 #import "SolverHUD.h"
 #import "SolverHUDDelegate.h"
-#import "SolverHUDWorkFlow.h"
+#import "SolverHUDWorkFlowSuccess.h"
+#import "SolverHUDWorkFlowFailed.h"
 #import "SolverHUDNetStatus.h"
 #import "SolverHUDWaitingDalog.h"
 #import "SolverHUDGIF.h"

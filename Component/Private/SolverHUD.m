@@ -33,7 +33,12 @@ typedef Animate AnimateDidStopBlock;
 
 typedef SolverHUD *(*Imp)(id, SEL, ...);
 typedef CAKeyframeAnimation * (*MImp)(id, SEL, ...);
+typedef void (*SImp)(id, SEL, ...);
 @implementation SolverHUD
+@synthesize isCatchingUserInteraction = _isCatchingUserInteraction;
+@synthesize position = _position;
+@synthesize status = _status;
+@synthesize duringTime = _duringTime;
 /*******************************
  
  *******************************/
@@ -190,7 +195,7 @@ typedef CAKeyframeAnimation * (*MImp)(id, SEL, ...);
 
 -(void)setDuringTime:(NSTimeInterval)duringTime
 {
-    if (!(self.status & SolverHUDShowingStatus)) {
+    if (!((self.status == SolverHUDAnimateingStatus) || (self.status == SolverHUDShowingStatus) || (self.status == SolverHUDDidDisappearStatus))) {
         _duringTime = duringTime;
     }
 }
@@ -203,6 +208,12 @@ typedef CAKeyframeAnimation * (*MImp)(id, SEL, ...);
 -(void)setStatus:(SolverHUDStatus)status
 {
     _status = status;
+    SEL sel = NSSelectorFromString(@"hudStatusDidChange:");
+    Method meth = (Method)class_getClassMethod(object_getClass(self), sel);
+    if (meth) {
+        SImp imp = (SImp)method_getImplementation(meth);
+        imp(self,sel,status);
+    }
 }
 
 /*******************************

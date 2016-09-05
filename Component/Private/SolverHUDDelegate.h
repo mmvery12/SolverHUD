@@ -10,9 +10,19 @@
 #import <UIKit/UIKit.h>
 @class SolverHUD;
 @protocol SolverHUDDelegate <NSObject>
+/*******************************
+ data source
+ *******************************/
 @required
 +(SolverHUD *)solverHUD;
 @optional
 +(CAAnimation *)solverHUDShowAnimate;
 +(CAAnimation *)solverHUDDisappearAnimate;
+
+/*******************************
+ delegaet
+ *******************************/
+@optional
+-(void)hudStatusDidChange:(SolverHUDStatus)status;
+
 @end

@@ -95,7 +95,6 @@
 
 -(void)show:(SolverHUD *)hud_
 {
-    [self perHUD:hud_ status:SolverHUDWillshowingStatus];
     UIView *view = [self hudShowInView:hud_];
     [view addSubview:hud_];
     if ([self hudShouldAnimate:hud_]) {

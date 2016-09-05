@@ -8,6 +8,6 @@
 
 #import "SolverHUD.h"
 
-@interface SolerHUDWorkFlowSuccess : SolverHUD
+@interface SolverHUDWorkFlowSuccess : SolverHUD
 
 @end
