@@ -73,7 +73,6 @@ typedef void (*SImp)(id, SEL, ...);
 +(SolverHUD *)GenSolverHUD
 {
     id hud = nil;
-    
     SEL sel = NSSelectorFromString(@"solverHUD");
     Method meth = (Method)class_getClassMethod(self, sel);
     Imp imp = method_getImplementation(meth);
