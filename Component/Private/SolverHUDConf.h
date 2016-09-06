@@ -12,7 +12,7 @@
 #import "SolverHUDDelegate.h"
 #import "SolverHUDWorkFlowSuccess.h"
 #import "SolverHUDWorkFlowFailed.h"
-#import "SolverHUDNetStatus.h"
-#import "SolverHUDWaitingDalog.h"
+#import "SolverHUDTextDailog.h"
+#import "SolverHUDWaitingDailog.h"
 #import "SolverHUDGIF.h"
 #endif

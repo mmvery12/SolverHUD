@@ -12,7 +12,7 @@
 +(SolverHUD *)solverHUD
 {
     SolverHUDWorkFlowFailed *sf = [SolverHUDWorkFlowFailed new];
-    sf.frame = CGRectMake(0, 0, 100, 100);
+    sf.frame = CGRectMake(0, 0, 70, 70);
     sf.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.6];
     UIImageView *image = [UIImageView new];
     image.frame = sf.bounds;

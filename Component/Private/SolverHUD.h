@@ -17,9 +17,10 @@ typedef NS_ENUM(NSInteger,SolverHUDPosition){
 typedef NS_ENUM(NSInteger,SolverHUDStatus) {
     SolverHUDNearMallocStatus = 1,//刚创建
     SolverHUDJoinQueueStatus = 1<<1,//刚加入队列
-    SolverHUDAnimateingStatus = 1<<2,//正在动画
+    SolverHUDInAnimateingStatus = 1<<2,//载入动画
     SolverHUDShowingStatus = 1<<3,//正在显示
-    SolverHUDDidDisappearStatus = 1<<4//将要消失
+    SolverHUDOutAnimateingStatus = 1<<4,//载出动画
+    SolverHUDDidDisappearStatus = 1<<5//将要消失
 };
 
 #import "SolverHUDDelegate.h"

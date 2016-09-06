@@ -18,9 +18,8 @@
 		692108E31D795E690075C2E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 692108DB1D795E690075C2E6 /* main.m */; };
 		692108E41D795E690075C2E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692108DD1D795E690075C2E6 /* ViewController.m */; };
 		6921091B1D796D030075C2E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6921091A1D796D030075C2E6 /* QuartzCore.framework */; };
-		6921091E1D796DAA0075C2E6 /* SolverHUDWorkFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6921091D1D796DAA0075C2E6 /* SolverHUDWorkFlow.m */; };
-		692109211D796DC20075C2E6 /* SolverHUDNetStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109201D796DC20075C2E6 /* SolverHUDNetStatus.m */; };
-		692109241D796DD80075C2E6 /* SolverHUDWaitingDalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */; };
+		692109211D796DC20075C2E6 /* SolverHUDTextDailog.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109201D796DC20075C2E6 /* SolverHUDTextDailog.m */; };
+		692109241D796DD80075C2E6 /* SolverHUDWaitingDailog.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109231D796DD80075C2E6 /* SolverHUDWaitingDailog.m */; };
 		692109271D796F150075C2E6 /* SolverHUDGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 692109261D796F150075C2E6 /* SolverHUDGIF.m */; };
 		69E25E881D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E25E871D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m */; };
 		69E25E8B1D7D656E00D55E5F /* SolverHUDWorkFlowFailed.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E25E8A1D7D656E00D55E5F /* SolverHUDWorkFlowFailed.m */; };
@@ -45,12 +44,10 @@
 		692108DC1D795E690075C2E6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		692108DD1D795E690075C2E6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6921091A1D796D030075C2E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		6921091C1D796DAA0075C2E6 /* SolverHUDWorkFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWorkFlow.h; sourceTree = "<group>"; };
-		6921091D1D796DAA0075C2E6 /* SolverHUDWorkFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWorkFlow.m; sourceTree = "<group>"; };
-		6921091F1D796DC20075C2E6 /* SolverHUDNetStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDNetStatus.h; sourceTree = "<group>"; };
-		692109201D796DC20075C2E6 /* SolverHUDNetStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDNetStatus.m; sourceTree = "<group>"; };
-		692109221D796DD80075C2E6 /* SolverHUDWaitingDalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWaitingDalog.h; sourceTree = "<group>"; };
-		692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWaitingDalog.m; sourceTree = "<group>"; };
+		6921091F1D796DC20075C2E6 /* SolverHUDTextDailog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDTextDailog.h; sourceTree = "<group>"; };
+		692109201D796DC20075C2E6 /* SolverHUDTextDailog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDTextDailog.m; sourceTree = "<group>"; };
+		692109221D796DD80075C2E6 /* SolverHUDWaitingDailog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWaitingDailog.h; sourceTree = "<group>"; };
+		692109231D796DD80075C2E6 /* SolverHUDWaitingDailog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWaitingDailog.m; sourceTree = "<group>"; };
 		692109251D796F150075C2E6 /* SolverHUDGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDGIF.h; sourceTree = "<group>"; };
 		692109261D796F150075C2E6 /* SolverHUDGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDGIF.m; sourceTree = "<group>"; };
 		69E25E861D7D654300D55E5F /* SolverHUDWorkFlowSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWorkFlowSuccess.h; sourceTree = "<group>"; };
@@ -131,12 +128,10 @@
 		6921090D1D7964B60075C2E6 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				6921091C1D796DAA0075C2E6 /* SolverHUDWorkFlow.h */,
-				6921091D1D796DAA0075C2E6 /* SolverHUDWorkFlow.m */,
-				6921091F1D796DC20075C2E6 /* SolverHUDNetStatus.h */,
-				692109201D796DC20075C2E6 /* SolverHUDNetStatus.m */,
-				692109221D796DD80075C2E6 /* SolverHUDWaitingDalog.h */,
-				692109231D796DD80075C2E6 /* SolverHUDWaitingDalog.m */,
+				6921091F1D796DC20075C2E6 /* SolverHUDTextDailog.h */,
+				692109201D796DC20075C2E6 /* SolverHUDTextDailog.m */,
+				692109221D796DD80075C2E6 /* SolverHUDWaitingDailog.h */,
+				692109231D796DD80075C2E6 /* SolverHUDWaitingDailog.m */,
 				692109251D796F150075C2E6 /* SolverHUDGIF.h */,
 				692109261D796F150075C2E6 /* SolverHUDGIF.m */,
 				69E25E861D7D654300D55E5F /* SolverHUDWorkFlowSuccess.h */,
@@ -221,15 +216,14 @@
 			files = (
 				69E25E881D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m in Sources */,
 				692108DE1D795E690075C2E6 /* AppDelegate.m in Sources */,
-				6921091E1D796DAA0075C2E6 /* SolverHUDWorkFlow.m in Sources */,
 				692108E41D795E690075C2E6 /* ViewController.m in Sources */,
 				691A4D451D7CFAF800EB7F1A /* SolverHUDShareInstance.m in Sources */,
-				692109211D796DC20075C2E6 /* SolverHUDNetStatus.m in Sources */,
+				692109211D796DC20075C2E6 /* SolverHUDTextDailog.m in Sources */,
 				692108E31D795E690075C2E6 /* main.m in Sources */,
 				692109271D796F150075C2E6 /* SolverHUDGIF.m in Sources */,
 				691A4D4B1D7CFB1A00EB7F1A /* SolverHUD.m in Sources */,
 				69E25E8B1D7D656E00D55E5F /* SolverHUDWorkFlowFailed.m in Sources */,
-				692109241D796DD80075C2E6 /* SolverHUDWaitingDalog.m in Sources */,
+				692109241D796DD80075C2E6 /* SolverHUDWaitingDailog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

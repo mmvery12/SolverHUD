@@ -1,5 +1,5 @@
 //
-//  SolverHUDWaitingDalog.h
+//  SolverHUDNetStatus.h
 //  SolverHUD
 //
 //  Created by JD on 16/9/2.
@@ -8,6 +8,6 @@
 
 #import "SolverHUD.h"
 
-@interface SolverHUDWaitingDalog : SolverHUD
+@interface SolverHUDTextDailog : SolverHUD
 
 @end

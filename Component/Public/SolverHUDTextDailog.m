@@ -6,17 +6,16 @@
 //  Copyright © 2016年 com.Vacn. All rights reserved.
 //
 
-#import "SolverHUDNetStatus.h"
+#import "SolverHUDTextDailog.h"
 
-@implementation SolverHUDNetStatus
+@implementation SolverHUDTextDailog
 +(SolverHUD *)solverHUD
 {
-    SolverHUDNetStatus *sf = [SolverHUDNetStatus new];
+    SolverHUDTextDailog *sf = [SolverHUDTextDailog new];
     sf.frame = CGRectMake(0, 0, 100, 100);
     sf.backgroundColor = [UIColor blueColor];
     return sf;
 }
-
 
 -(void)hudStatusDidChange:(SolverHUDStatus)status;
 {

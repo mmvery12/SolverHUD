@@ -72,6 +72,7 @@ typedef void (*SImp)(id, SEL, ...);
  *******************************/
 +(SolverHUD *)GenSolverHUD
 {
+    /*防止子类和父类都没有实现，使用IMP探测*/
     id hud = nil;
     SEL sel = NSSelectorFromString(@"solverHUD");
     Method meth = (Method)class_getClassMethod(self, sel);
@@ -87,6 +88,7 @@ typedef void (*SImp)(id, SEL, ...);
 
 +(CAAnimation *)GenSolverHUDShowAnimate
 {
+    /*防止子类和父类都没有实现，使用IMP探测*/
     SEL sel = NSSelectorFromString(@"solverHUDShowAnimate");
     Method meth = (Method)class_getClassMethod(self, sel);
     if (meth) {
@@ -102,6 +104,7 @@ typedef void (*SImp)(id, SEL, ...);
 
 +(CAAnimation *)GenSolverHUDDisappearAnimate
 {
+    /*防止子类和父类都没有实现，使用IMP探测*/
     SEL sel = NSSelectorFromString(@"solverHUDDisappearAnimate");
     Method meth = (Method)class_getClassMethod(self, sel);
     if (meth) {
@@ -150,6 +153,10 @@ typedef void (*SImp)(id, SEL, ...);
  *******************************/
 +(id)cVi:(UIView *)view p:(SolverHUDPosition)position c:(BOOL)tryCatchUserInteraction a:(BOOL)animate j:(BOOL)join d:(NSTimeInterval)during;
 {
+    if (!view) {
+        NSLog(@"[error]:*** SolverHUD super view cannot nil");
+        return nil;
+    }
     SolverHUD* hud = [self GenSolverHUD];
     if (hud==nil) {
         NSLog(@"[error]:*** +(SolverHUD *)solverHUD must to be overwrite!");
@@ -181,7 +188,7 @@ typedef void (*SImp)(id, SEL, ...);
             frame.origin.y = 64.f;
             break;
         case SolverHUDMiddlePosition:
-            self.center = CGPointMake(CGRectGetMidX(self.showInview.bounds), CGRectGetMidY(self.showInview.bounds));
+            frame.origin.y = (CGRectGetHeight(self.showInview.bounds)-frame.size.height)/2.;
             break;
         case SolverHUDBottomPosition:
             frame.origin.y = self.showInview.bounds.size.height-64-frame.size.height;
@@ -194,7 +201,7 @@ typedef void (*SImp)(id, SEL, ...);
 
 -(void)setDuringTime:(NSTimeInterval)duringTime
 {
-    if (!((self.status == SolverHUDAnimateingStatus) || (self.status == SolverHUDShowingStatus) || (self.status == SolverHUDDidDisappearStatus))) {
+    if (!((self.status == SolverHUDOutAnimateingStatus)||(self.status == SolverHUDInAnimateingStatus) || (self.status == SolverHUDShowingStatus) || (self.status == SolverHUDDidDisappearStatus))) {
         _duringTime = duringTime;
     }
 }
@@ -206,6 +213,7 @@ typedef void (*SImp)(id, SEL, ...);
 
 -(void)setStatus:(SolverHUDStatus)status
 {
+    /*防止子类和父类都没有实现，使用IMP探测*/
     _status = status;
     SEL sel = NSSelectorFromString(@"hudStatusDidChange:");
     Method meth = (Method)class_getInstanceMethod(object_getClass(self), sel);

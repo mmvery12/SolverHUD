@@ -98,7 +98,6 @@
     UIView *view = [self hudShowInView:hud_];
     [view addSubview:hud_];
     if ([self hudShouldAnimate:hud_]) {
-        [self perHUD:hud_ status:SolverHUDAnimateingStatus];
         CAAnimation *anio = [self hudStartAnio:hud_];
         if (anio) {
             [hud_.layer addAnimation:anio forKey:@"showWithAnimate"];
@@ -109,7 +108,7 @@
 -(void)hidden:(SolverHUD *)hud_
 {
     if ([self hudShouldAnimate:hud_]) {
-        [self perHUD:hud_ status:SolverHUDAnimateingStatus];
+        
         CAAnimation *anio = [self hudStopAnio:hud_];
         if (anio) {
             [hud_.layer addAnimation:anio forKey:@"disApWithAnimate"];
@@ -117,16 +116,19 @@
     }
 }
 
-
 -(void)hudAnimationDidStart:(CAAnimation *)anio
 {
     SolverHUD *hud_ = objc_getAssociatedObject(anio, @"startAnio");
     BOOL startanimateType = [objc_getAssociatedObject(anio, @"startanimateType") boolValue];
     if (startanimateType==0) {
-        [self perHUD:hud_ status:SolverHUDShowingStatus];
+        [self perHUD:hud_ status:SolverHUDInAnimateingStatus];
+        [self tryCatchUI:hud_];
         if (hud_.duringTime!=0) {
             [self performSelector:@selector(hidden:) withObject:hud_ afterDelay:hud_.duringTime];
         }
+    }
+    if (startanimateType==1) {
+        [self perHUD:hud_ status:SolverHUDOutAnimateingStatus];
     }
 }
 
@@ -134,7 +136,11 @@
 {
     SolverHUD *hud_ = objc_getAssociatedObject(anio, @"stopAnio");
     BOOL stopanimateType = [objc_getAssociatedObject(anio, @"stopanimateType") boolValue];
+    if (stopanimateType==0) {
+        [self perHUD:hud_ status:SolverHUDShowingStatus];
+    }
     if (stopanimateType==1) {
+        [self tryUnCatchUI:hud_];
         dispatch_block_t blt = [hud_ valueForKey:@"showNext"];
         if (blt) {
             blt();
@@ -171,5 +177,21 @@
 {
     SEL sel = NSSelectorFromString(@"setStatus:");
     objc_msgSend(hud_,sel,status_);
+}
+
+-(void)tryCatchUI:(SolverHUD *)hud_
+{
+    if (hud_.isCatchingUserInteraction) {
+        UIView *view = [self hudShowInView:hud_];
+        view.userInteractionEnabled = NO;
+    }
+}
+
+-(void)tryUnCatchUI:(SolverHUD *)hud_
+{
+    if (hud_.isCatchingUserInteraction) {
+        UIView *view = [self hudShowInView:hud_];
+        view.userInteractionEnabled = YES;
+    }
 }
 @end
