@@ -13,9 +13,12 @@
 /*******************************
  data source
  *******************************/
-@required
-+(SolverHUD *)solverHUD;
 @optional
++(SolverHUD *)solverHUD;
+
++(SolverHUD *)solverHUD:(id)params;
+
+
 +(CAAnimation *)solverHUDShowAnimate;
 +(CAAnimation *)solverHUDDisappearAnimate;
 

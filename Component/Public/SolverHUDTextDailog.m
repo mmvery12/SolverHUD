@@ -9,7 +9,7 @@
 #import "SolverHUDTextDailog.h"
 
 @implementation SolverHUDTextDailog
-+(SolverHUD *)solverHUD
++(SolverHUD *)solverHUD:(NSString *)text
 {
     SolverHUDTextDailog *sf = [SolverHUDTextDailog new];
     sf.frame = CGRectMake(0, 0, 100, 100);
@@ -17,9 +17,24 @@
     return sf;
 }
 
--(void)hudStatusDidChange:(SolverHUDStatus)status;
++(id)ScheduledShowInView:(UIView *)view withText:(NSString *)text;
 {
-    NSLog(@"status %ld",(long)status);
+    return [super ScheduledShowInView:view params:text];
+}
+
++(id)ShowInView:(UIView *)view  withText:(NSString *)text;
+{
+    return [super ShowInView:view params:text];
+}
+
++(id)ScheduledShowInWindowWithText:(NSString *)text;
+{
+    return [super ScheduledShowInWindowWithParams:text];
+}
+
++(id)ShowInWindowWithText:(NSString *)text;
+{
+    return [super ShowInWindowWithParams:text];
 }
 
 @end

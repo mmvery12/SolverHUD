@@ -100,7 +100,7 @@
     if ([self hudShouldAnimate:hud_]) {
         CAAnimation *anio = [self hudStartAnio:hud_];
         if (anio) {
-            [hud_.layer addAnimation:anio forKey:@"showWithAnimate"];
+            [hud_.layer addAnimation:anio forKey:@"animate"];
         }
     }
 }
@@ -170,7 +170,7 @@
 
 -(BOOL)hudShouldAnimate:(SolverHUD *)hud_
 {
-    return [hud_ valueForKey:@"showWithAnimate"];
+    return [hud_ valueForKey:@"animate"];
 }
 
 -(void)perHUD:(SolverHUD *)hud_ status:(SolverHUDStatus)status_

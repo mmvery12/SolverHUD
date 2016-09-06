@@ -20,7 +20,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [SolverHUDWaitingDailog ScheduledShowInView:self.view position:SolverHUDMiddlePosition catchUserInteraction:YES showWithanimate:YES during:3];
+    [SolverHUDTextDailog ScheduledShowInWindowWithText:@"123"];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
