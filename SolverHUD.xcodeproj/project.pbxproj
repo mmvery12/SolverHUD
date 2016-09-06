@@ -32,7 +32,6 @@
 		691A4D441D7CFAF800EB7F1A /* SolverHUDViewBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SolverHUDViewBundle.bundle; sourceTree = "<group>"; };
 		691A4D471D7CFB1A00EB7F1A /* SolverHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUD.h; sourceTree = "<group>"; };
 		691A4D481D7CFB1A00EB7F1A /* SolverHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUD.m; sourceTree = "<group>"; };
-		691A4D491D7CFB1A00EB7F1A /* SolverHUDConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDConf.h; sourceTree = "<group>"; };
 		691A4D4A1D7CFB1A00EB7F1A /* SolverHUDDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDDelegate.h; sourceTree = "<group>"; };
 		692108D31D795E690075C2E6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		692108D41D795E690075C2E6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,6 +49,7 @@
 		692109231D796DD80075C2E6 /* SolverHUDWaitingDailog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWaitingDailog.m; sourceTree = "<group>"; };
 		692109251D796F150075C2E6 /* SolverHUDGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDGIF.h; sourceTree = "<group>"; };
 		692109261D796F150075C2E6 /* SolverHUDGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDGIF.m; sourceTree = "<group>"; };
+		69D32B5F1D7E96E00090967A /* SolverHUDConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDConf.h; sourceTree = "<group>"; };
 		69E25E861D7D654300D55E5F /* SolverHUDWorkFlowSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWorkFlowSuccess.h; sourceTree = "<group>"; };
 		69E25E871D7D654300D55E5F /* SolverHUDWorkFlowSuccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolverHUDWorkFlowSuccess.m; sourceTree = "<group>"; };
 		69E25E891D7D656E00D55E5F /* SolverHUDWorkFlowFailed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolverHUDWorkFlowFailed.h; sourceTree = "<group>"; };
@@ -89,6 +89,7 @@
 		20D17F761A788DF300C52D5D /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				69D32B5F1D7E96E00090967A /* SolverHUDConf.h */,
 				692108FC1D7964B60075C2E6 /* Private */,
 				6921090D1D7964B60075C2E6 /* Public */,
 			);
@@ -116,7 +117,6 @@
 			children = (
 				691A4D471D7CFB1A00EB7F1A /* SolverHUD.h */,
 				691A4D481D7CFB1A00EB7F1A /* SolverHUD.m */,
-				691A4D491D7CFB1A00EB7F1A /* SolverHUDConf.h */,
 				691A4D4A1D7CFB1A00EB7F1A /* SolverHUDDelegate.h */,
 				691A4D421D7CFAF700EB7F1A /* SolverHUDShareInstance.h */,
 				691A4D431D7CFAF800EB7F1A /* SolverHUDShareInstance.m */,
