@@ -10,17 +10,17 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger,SolverHUDPosition){
-    SolverHUDTopPosition = 0x01,//after top around 64px
+    SolverHUDTopPosition,//after top around 64px
     SolverHUDMiddlePosition,//center
     SolverHUDBottomPosition//behand bottom around 64px
 };
 typedef NS_ENUM(NSInteger,SolverHUDStatus) {
-    SolverHUDNearMallocStatus = 1,//刚创建
-    SolverHUDJoinQueueStatus = 1<<1,//刚加入队列
-    SolverHUDInAnimateingStatus = 1<<2,//载入动画
-    SolverHUDShowingStatus = 1<<3,//正在显示
-    SolverHUDOutAnimateingStatus = 1<<4,//载出动画
-    SolverHUDDidDisappearStatus = 1<<5//将要消失
+    SolverHUDNearMallocStatus,//刚创建
+    SolverHUDJoinQueueStatus,//刚加入队列
+    SolverHUDInAnimateingStatus,//载入动画
+    SolverHUDShowingStatus,//正在显示
+    SolverHUDOutAnimateingStatus,//载出动画
+    SolverHUDDidDisappearStatus//将要消失
 };
 
 #import "SolverHUDDelegate.h"

@@ -17,6 +17,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSURL * launchUrl = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
+    NSString *aa = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
+    if (launchUrl) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:aa message:launchUrl.absoluteString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
     return YES;
 }
 
@@ -42,4 +48,24 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options" message:url.absoluteString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"application:(UIApplication *)application handleOpenURL:(NSURL *)url" message:url.absoluteString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation" message:url.absoluteString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+    return NO;
+}
 @end

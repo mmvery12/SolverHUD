@@ -80,19 +80,10 @@ typedef void (*SImp)(id, SEL, ...);
     /*防止子类和父类都没有实现，使用IMP探测*/
     id hud = nil;
     SEL sel = nil;
-    if (params) {
-        sel = NSSelectorFromString(@"solverHUD:");
-    }else
-        sel = NSSelectorFromString(@"solverHUD");
-    
+    sel = NSSelectorFromString(@"solverHUD:");
     Method meth = (Method)class_getClassMethod(self, sel);
     Imp imp = method_getImplementation(meth);
-    if (imp && params) {
-        hud = imp(self,sel,params);
-    }
-    if (imp && !params) {
-        hud = imp(self,sel);
-    }
+    hud = imp(self,sel,params);
     if (hud) {
         return hud;
     }

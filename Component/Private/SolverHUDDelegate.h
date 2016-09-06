@@ -14,7 +14,6 @@
  data source
  *******************************/
 @optional
-+(SolverHUD *)solverHUD;
 
 +(SolverHUD *)solverHUD:(id)params;
 
