@@ -9,6 +9,7 @@
 #import "SolverHUDShareInstance.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
+typedef void (*VImp)(id, SEL, ...);
 @interface SolverHUDShareInstance ()
 @property (nonatomic,strong) NSMutableArray *solverQueueArr;
 @end
@@ -61,7 +62,6 @@
                 [instance hudAnimationDidStop:anio];
             } forKey:@"animateStop"];
         }
-        
         BOOL join = [hud_ valueForKey:@"joinQueue"];
         if (join && ![instance.solverQueueArr containsObject:hud_]) {
             __weak SolverHUD *lastHud;
@@ -73,7 +73,7 @@
                     dispatch_block_t blt = ^{
                         [instance show:hud_];
                     };
-                    [hud_ setValue:blt forKey:@"showNext"];
+                    [lastHud setValue:blt forKey:@"showNext"];
                 }else
                 {
                     [instance show:hud_];
@@ -97,21 +97,50 @@
 {
     UIView *view = [self hudShowInView:hud_];
     [view addSubview:hud_];
-    if ([self hudShouldAnimate:hud_]) {
+    if (hud_.manimate) {
         CAAnimation *anio = [self hudStartAnio:hud_];
         if (anio) {
             [hud_.layer addAnimation:anio forKey:@"animate"];
+        }
+    }else
+    {
+        SEL sel = NSSelectorFromString(@"animationDidStart:");
+        Method meth = (Method)class_getInstanceMethod(object_getClass(hud_), sel);
+        if (meth) {
+            VImp imp = (VImp)method_getImplementation(meth);
+            imp(hud_,sel,@"animate");
+        }
+        
+        sel = NSSelectorFromString(@"animationDidStop:finished:");
+        meth = (Method)class_getInstanceMethod(object_getClass(hud_), sel);
+        if (meth) {
+            VImp imp = (VImp)method_getImplementation(meth);
+            imp(hud_,sel,@"animate",1);
         }
     }
 }
 
 -(void)hidden:(SolverHUD *)hud_
 {
-    if ([self hudShouldAnimate:hud_]) {
-        
+    if (hud_.manimate) {
         CAAnimation *anio = [self hudStopAnio:hud_];
         if (anio) {
             [hud_.layer addAnimation:anio forKey:@"disApWithAnimate"];
+        }
+    }else
+    {
+        SEL sel = NSSelectorFromString(@"animationDidStart:");
+        Method meth = (Method)class_getInstanceMethod(object_getClass(hud_), sel);
+        if (meth) {
+            VImp imp = (VImp)method_getImplementation(meth);
+            imp(hud_,sel,@"disApWithAnimate");
+        }
+        
+        sel = NSSelectorFromString(@"animationDidStop:finished:");
+        meth = (Method)class_getInstanceMethod(object_getClass(hud_), sel);
+        if (meth) {
+            VImp imp = (VImp)method_getImplementation(meth);
+            imp(hud_,sel,@"disApWithAnimate",1);
         }
     }
 }
@@ -170,7 +199,7 @@
 
 -(BOOL)hudShouldAnimate:(SolverHUD *)hud_
 {
-    return [hud_ valueForKey:@"animate"];
+    return [hud_ valueForKey:@"manimate"];
 }
 
 -(void)perHUD:(SolverHUD *)hud_ status:(SolverHUDStatus)status_

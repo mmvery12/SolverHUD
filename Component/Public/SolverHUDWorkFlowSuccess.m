@@ -9,7 +9,7 @@
 #import "SolverHUDWorkFlowSuccess.h"
 
 @implementation SolverHUDWorkFlowSuccess
-+(SolverHUD *)solverHUD
++(SolverHUD *)solverHUD:(id)params
 {
     SolverHUDWorkFlowSuccess *sf = [SolverHUDWorkFlowSuccess new];
     sf.frame = CGRectMake(0, 0, 70, 70);

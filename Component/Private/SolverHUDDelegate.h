@@ -26,5 +26,5 @@
  *******************************/
 @optional
 -(void)hudStatusDidChange:(SolverHUDStatus)status;
-
+-(void)hudDeviceOrientation:(UIDeviceOrientation)orientation;
 @end

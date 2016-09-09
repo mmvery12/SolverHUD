@@ -16,11 +16,11 @@ typedef NS_ENUM(NSInteger,SolverHUDPosition){
 };
 typedef NS_ENUM(NSInteger,SolverHUDStatus) {
     SolverHUDNearMallocStatus,//刚创建
-    SolverHUDJoinQueueStatus,//刚加入队列
-    SolverHUDInAnimateingStatus,//载入动画
-    SolverHUDShowingStatus,//正在显示
-    SolverHUDOutAnimateingStatus,//载出动画
-    SolverHUDDidDisappearStatus//将要消失
+    SolverHUDJoinQueueStatus,//刚加入队列开始瞬间
+    SolverHUDInAnimateingStatus,//载入动画开始瞬间
+    SolverHUDShowingStatus,//正在显示开始瞬间
+    SolverHUDOutAnimateingStatus,//载出动画开始瞬间
+    SolverHUDDidDisappearStatus//将要消失开始瞬间
 };
 
 #import "SolverHUDDelegate.h"
@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger,SolverHUDStatus) {
 @property (nonatomic,readonly,assign)SolverHUDPosition position;//当前设置的显示位置
 @property (nonatomic,readonly,assign)SolverHUDStatus status;//当前UI的状态
 @property (nonatomic,readonly,assign)NSTimeInterval duringTime;//当前设置的持续时间，UI正在显示的时候不可改变
+@property (nonatomic,readonly,assign)BOOL manimate;
 /*******************************
  下面2个方法会讲需要pop的加入到自定义的view之中
  ScheduledShowInView 加入pop queue，队列显示
@@ -62,4 +63,10 @@ typedef NS_ENUM(NSInteger,SolverHUDStatus) {
 
 +(id)ScheduledShowInWindowWithParams:(id)params;
 +(id)ShowInWindowWithParams:(id)params;
+
++(id)ScheduledShowInView:(UIView *)view params:(id)params during:(NSTimeInterval)during;
++(id)ShowInView:(UIView *)view params:(id)params during:(NSTimeInterval)during;
+
++(id)ScheduledShowInWindowWithParams:(id)params during:(NSTimeInterval)during;
++(id)ShowInWindowWithParams:(id)params during:(NSTimeInterval)during;
 @end

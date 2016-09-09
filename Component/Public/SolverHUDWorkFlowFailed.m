@@ -9,7 +9,7 @@
 #import "SolverHUDWorkFlowFailed.h"
 
 @implementation SolverHUDWorkFlowFailed
-+(SolverHUD *)solverHUD
++(SolverHUD *)solverHUD:(id)params
 {
     SolverHUDWorkFlowFailed *sf = [SolverHUDWorkFlowFailed new];
     sf.frame = CGRectMake(0, 0, 70, 70);

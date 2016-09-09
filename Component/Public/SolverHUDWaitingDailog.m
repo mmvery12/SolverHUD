@@ -9,7 +9,7 @@
 #import "SolverHUDWaitingDailog.h"
 
 @implementation SolverHUDWaitingDailog
-+(SolverHUD *)solverHUD
++(SolverHUD *)solverHUD:(id)params;
 {
     SolverHUDWaitingDailog *sf = [SolverHUDWaitingDailog new];
     sf.frame = CGRectMake(0, 0, 100, 100);

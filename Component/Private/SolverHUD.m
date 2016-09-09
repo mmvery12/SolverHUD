@@ -12,13 +12,11 @@
 #import <objc/objc.h>
 #import <objc/message.h>
 
-
 typedef void(^Animate)(CAAnimation *anio);
 typedef Animate AnimateDidStartBlock;
 typedef Animate AnimateDidStopBlock;
 @interface SolverHUD ()
 @property (nonatomic,assign)BOOL joinQueue;
-@property (nonatomic,assign)BOOL animate;
 @property (nonatomic,weak)UIView *showInview;
 @property (nonatomic,assign)BOOL tryCatcheUI;
 
@@ -29,6 +27,7 @@ typedef Animate AnimateDidStopBlock;
 @property (nonatomic,copy)AnimateDidStartBlock animateStart;
 @property (nonatomic,copy)AnimateDidStopBlock animateStop;
 @end
+
 
 
 typedef SolverHUD *(*Imp)(id, SEL, ...);
@@ -51,7 +50,8 @@ typedef void (*SImp)(id, SEL, ...);
 {
     return nil;
 }
-+(CAAnimation *)solverHUDShowAnimate;
+
++(CAAnimation *)solverHUDShowAnimate
 {
     CAKeyframeAnimation *anio = [CAKeyframeAnimation animation];
     anio.keyPath = @"opacity";
@@ -62,7 +62,7 @@ typedef void (*SImp)(id, SEL, ...);
     return anio;
 }
 
-+(CAAnimation *)solverHUDDisappearAnimate;
++(CAAnimation *)solverHUDDisappearAnimate
 {
     CAKeyframeAnimation *anio = [CAKeyframeAnimation animation];
     anio.keyPath = @"opacity";
@@ -90,7 +90,7 @@ typedef void (*SImp)(id, SEL, ...);
     return nil;
 }
 
-+(CAAnimation *)GenSolverHUDShowAnimate
++(CAAnimation *)GenSolverHUDShowAnimate;
 {
     /*防止子类和父类都没有实现，使用IMP探测*/
     SEL sel = NSSelectorFromString(@"solverHUDShowAnimate");
@@ -106,7 +106,7 @@ typedef void (*SImp)(id, SEL, ...);
         return [SolverHUD solverHUDShowAnimate];
 }
 
-+(CAAnimation *)GenSolverHUDDisappearAnimate
++(CAAnimation *)GenSolverHUDDisappearAnimate;
 {
     /*防止子类和父类都没有实现，使用IMP探测*/
     SEL sel = NSSelectorFromString(@"solverHUDDisappearAnimate");
@@ -187,6 +187,7 @@ typedef void (*SImp)(id, SEL, ...);
         return nil;
     }
     SolverHUD* hud = [self GenSolverHUD:params];
+    [[NSNotificationCenter defaultCenter] addObserver:hud selector:@selector(orientation:) name:UIApplicationWillChangeStatusBarOrientationNotification object:nil];
     if (hud==nil) {
         NSLog(@"[error]:*** +(SolverHUD *)solverHUD must to be overwrite!");
         return nil;
@@ -195,13 +196,14 @@ typedef void (*SImp)(id, SEL, ...);
     hud.showInview = view;
     hud.tryCatcheUI = tryCatchUI;
     hud.joinQueue = join;
-    hud.animate = animate;
+    hud.manimate = animate;
     if (animate) {
         hud.showAnio = [self GenSolverHUDShowAnimate];
         hud.showAnio.delegate = hud;
         hud.disAAnio = [self GenSolverHUDDisappearAnimate];
         hud.disAAnio.delegate = hud;
     }
+    
     hud.duringTime = during;
     [SolverHUDShareInstance ShowSolverHUD:hud];
     return hud;
@@ -228,6 +230,33 @@ typedef void (*SImp)(id, SEL, ...);
     self.frame = frame;
 }
 
+-(void)orientation:(NSNotification *)note
+{
+    UIDeviceOrientation orientation;
+    switch ([note.userInfo[@"UIApplicationStatusBarOrientationUserInfoKey"] integerValue]) {
+        case UIDeviceOrientationPortrait:
+            orientation = UIDeviceOrientationPortrait;
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            orientation = UIDeviceOrientationPortraitUpsideDown;
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            orientation = UIDeviceOrientationLandscapeLeft;
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            orientation = UIDeviceOrientationLandscapeRight;
+            break;
+        default:
+            break;
+    }
+    [self hudDeviceOrientation:orientation];
+}
+
+-(void)hudDeviceOrientation:(UIDeviceOrientation)orientation;
+{
+
+}
+
 -(void)setDuringTime:(NSTimeInterval)duringTime
 {
     if (!((self.status == SolverHUDOutAnimateingStatus)||(self.status == SolverHUDInAnimateingStatus) || (self.status == SolverHUDShowingStatus) || (self.status == SolverHUDDidDisappearStatus))) {
@@ -252,6 +281,11 @@ typedef void (*SImp)(id, SEL, ...);
     }
 }
 
+-(void)setManimate:(BOOL)manimate
+{
+    _manimate = manimate;
+}
+
 /*******************************
  
  *******************************/
@@ -259,10 +293,10 @@ typedef void (*SImp)(id, SEL, ...);
 {
     if (self.animateStart) {
         objc_setAssociatedObject(anim, @"startAnio", self, OBJC_ASSOCIATION_ASSIGN);
-        if ([self.layer animationForKey:@"animate"]==anim) {
+        if ([self.layer animationForKey:@"animate"]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:@"animate"])) {
             objc_setAssociatedObject(anim, @"startanimateType", @"0", OBJC_ASSOCIATION_COPY);
         }
-        if ([self.layer animationForKey:@"disApWithAnimate"]==anim) {
+        if ([self.layer animationForKey:@"disApWithAnimate"]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:@"disApWithAnimate"])) {
             objc_setAssociatedObject(anim, @"startanimateType", @"1", OBJC_ASSOCIATION_COPY);
         }
         self.animateStart(anim);
@@ -274,16 +308,15 @@ typedef void (*SImp)(id, SEL, ...);
     if (flag) {
         if (self.animateStop) {
             objc_setAssociatedObject(anim, @"stopAnio", self, OBJC_ASSOCIATION_ASSIGN);
-            if ([self.layer animationForKey:@"animate"]==anim) {
+            if ([self.layer animationForKey:@"animate"]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:@"animate"])) {
                 objc_setAssociatedObject(anim, @"stopanimateType", @"0", OBJC_ASSOCIATION_COPY);
             }
-            if ([self.layer animationForKey:@"disApWithAnimate"]==anim) {
+            if ([self.layer animationForKey:@"disApWithAnimate"]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:@"disApWithAnimate"])) {
                 objc_setAssociatedObject(anim, @"stopanimateType", @"1", OBJC_ASSOCIATION_COPY);
             }
             self.animateStop(anim);
         }
     }
-    
 }
 @end
 
@@ -305,5 +338,22 @@ typedef void (*SImp)(id, SEL, ...);
 {
     return [self cVi:[UIApplication sharedApplication].keyWindow p:SolverHUDMiddlePosition c:YES a:YES j:NO d:3 parms:params];
 }
++(id)ScheduledShowInView:(UIView *)view params:(id)params during:(NSTimeInterval)during;
+{
+    return [self cVi:view p:SolverHUDMiddlePosition c:YES a:YES j:YES d:during parms:params];
+}
++(id)ShowInView:(UIView *)view params:(id)params during:(NSTimeInterval)during;
+{
+    return [self cVi:view p:SolverHUDMiddlePosition c:YES a:YES j:NO d:0 parms:params];
+}
++(id)ScheduledShowInWindowWithParams:(id)params during:(NSTimeInterval)during;
+{
+    return [self cVi:[UIApplication sharedApplication].keyWindow p:SolverHUDMiddlePosition c:YES a:YES j:YES d:0 parms:params];
+}
++(id)ShowInWindowWithParams:(id)params during:(NSTimeInterval)during;
+{
+    return [self cVi:[UIApplication sharedApplication].keyWindow p:SolverHUDMiddlePosition c:YES a:YES j:NO d:0 parms:params];
+}
+
 
 @end

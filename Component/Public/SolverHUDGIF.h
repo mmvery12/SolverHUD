@@ -9,5 +9,12 @@
 #import "SolverHUD.h"
 
 @interface SolverHUDGIF : SolverHUD
++(id)ScheduledShowInView:(UIView *)view withImages:(NSArray *)imgs;
+
++(id)ShowInView:(UIView *)view  withImages:(NSArray *)imgs;
+
++(id)ScheduledShowInWindowWithImages:(NSArray *)imgs;
+
++(id)ShowInWindowWithImages:(NSArray *)imgs;
 
 @end
