@@ -46,10 +46,6 @@ typedef void (*SImp)(id, SEL, ...);
 /*******************************
  
  *******************************/
-+(SolverHUD *)solverHUD
-{
-    return nil;
-}
 
 +(SolverHUD *)solverHUD:(id)params
 {
@@ -88,9 +84,11 @@ typedef void (*SImp)(id, SEL, ...);
     sel = NSSelectorFromString(@"solverHUD:");
     Method meth = (Method)class_getClassMethod(self, sel);
     Imp imp = method_getImplementation(meth);
-    hud = imp(self,sel,params);
-    if (hud) {
-        return hud;
+    if (imp) {
+        hud = imp(self,sel,params);
+        if (hud) {
+            return hud;
+        }
     }
     return nil;
 }
