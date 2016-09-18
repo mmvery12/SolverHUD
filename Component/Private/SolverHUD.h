@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger,SolverHUDStatus) {
     SolverHUDNearMallocStatus,//刚创建
     SolverHUDJoinQueueStatus,//刚加入队列开始瞬间
     SolverHUDInAnimateingStatus,//载入动画开始瞬间
-    SolverHUDShowingStatus,//正在显示开始瞬间
+    SolverHUDShowingStatus,//正在显示(加到superview后)开始瞬间
     SolverHUDOutAnimateingStatus,//载出动画开始瞬间
     SolverHUDDidDisappearStatus//将要消失开始瞬间
 };

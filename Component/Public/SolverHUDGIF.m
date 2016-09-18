@@ -49,7 +49,6 @@
 -(void)animateend
 {
     UIImageView *imageView = (id)[self viewWithTag:10086];
-    
     [imageView.layer removeAllAnimations];
 }
 

@@ -32,8 +32,9 @@
 
 -(void)layoutSubviews
 {
+    [super layoutSubviews];
     UILabel *label = (id)[self viewWithTag:10086];
-    CGRect frame = self.superview.frame;
+    CGRect frame = self.superview.bounds;
     frame = [label.text boundingRectWithSize:CGSizeMake(frame.size.width-60, CGFLOAT_MAX-60) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
     frame.origin.x = frame.origin.y = 15;
     label.frame = frame;
@@ -41,7 +42,6 @@
     frame.size.width+=30;
     frame.size.height+=30;
     self.frame = frame;
-    [super layoutSubviews];
 }
 
 +(id)ScheduledShowInView:(UIView *)view withText:(NSString *)text;

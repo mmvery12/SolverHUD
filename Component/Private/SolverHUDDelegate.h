@@ -17,7 +17,6 @@
 
 +(SolverHUD *)solverHUD:(id)params;
 
-
 +(CAAnimation *)solverHUDShowAnimate;
 +(CAAnimation *)solverHUDDisappearAnimate;
 
