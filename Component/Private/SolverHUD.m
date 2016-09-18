@@ -223,7 +223,6 @@ typedef void (*SImp)(id, SEL, ...);
         !fromOrientationChange) {
         return;
     }
-    
     frame.origin.x = (CGRectGetWidth(self.showInview.bounds)-frame.size.width)/2.;
     switch (self.position) {
         case SolverHUDTopPosition:
