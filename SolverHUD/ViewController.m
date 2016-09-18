@@ -24,6 +24,7 @@
 //                                                             (id)[UIImage imageNamed:@"microphone2"].CGImage,
 //                                                             (id)[UIImage imageNamed:@"microphone3"].CGImage]];
     [SolverHUDTextDailog ScheduledShowInView:self.view withText:@"asdasdasdasdsadsdasdasdsadasdasdasdsadasdasdsadasdsadsadasdasdas"];
+//    [SolverHUDWorkFlowFailed ScheduledShowInView:self.view];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
     });

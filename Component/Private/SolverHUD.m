@@ -18,6 +18,7 @@ typedef Animate AnimateDidStopBlock;
 @interface SolverHUD ()
 {
     CGPoint originXY;
+    UIDeviceOrientation originOrientation;
 }
 @property (nonatomic,assign)BOOL joinQueue;
 @property (nonatomic,weak)UIView *showInview;
@@ -191,8 +192,8 @@ typedef void (*SImp)(id, SEL, ...);
         return nil;
     }
     SolverHUD* hud = [self GenSolverHUD:params];
-    [[NSNotificationCenter defaultCenter] addObserver:hud selector:@selector(orientation:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     [hud addObserver:hud forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:hud selector:@selector(orientation:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     if (hud==nil) {
         NSLog(@"[error]:*** +(SolverHUD *)solverHUD must to be overwrite!");
         return nil;
@@ -209,15 +210,17 @@ typedef void (*SImp)(id, SEL, ...);
         hud.disAAnio.delegate = hud;
     }
     hud.duringTime = during;
-    [hud updateViewCenter];
+    [hud updateViewCenter:0];
     [SolverHUDShareInstance ShowSolverHUD:hud];
     return hud;
 }
 
--(void)updateViewCenter
+-(void)updateViewCenter:(BOOL)fromOrientationChange
 {
     CGRect frame = self.frame;
-    if (frame.origin.x==originXY.x && frame.origin.y==originXY.y && !CGPointEqualToPoint(CGPointZero, originXY)) {
+    if (frame.origin.x==originXY.x && frame.origin.y==originXY.y &&
+        !CGPointEqualToPoint(CGPointZero, originXY) &&
+        !fromOrientationChange) {
         return;
     }
     frame.origin.x = (CGRectGetWidth(self.showInview.bounds)-frame.size.width)/2.;
@@ -259,13 +262,15 @@ typedef void (*SImp)(id, SEL, ...);
             break;
     }
     [self hudDeviceOrientation:orientation];
-    [self updateViewCenter];
+    [self updateViewCenter:1];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"frame"]) {
-        [self updateViewCenter];
+    @synchronized (self) {
+        if ([keyPath isEqualToString:@"frame"]) {
+            [self updateViewCenter:0];
+        }
     }
 }
 
