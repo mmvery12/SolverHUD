@@ -78,51 +78,55 @@ typedef void (*SImp)(id, SEL, ...);
  *******************************/
 +(SolverHUD *)GenSolverHUD:(id)params
 {
-    /*防止子类和父类都没有实现，使用IMP探测*/
-    id hud = nil;
-    SEL sel = nil;
-    sel = NSSelectorFromString(@"solverHUD:");
-    Method meth = (Method)class_getClassMethod(self, sel);
-    Imp imp = method_getImplementation(meth);
-    if (imp) {
-        hud = imp(self,sel,params);
-        if (hud) {
-            return hud;
-        }
-    }
-    return nil;
+    return [self solverHUD:params];
+    /*防止子类和父类都没有实现，使用IMP探测*/  // 坑，真机会奔溃
+//    id hud = nil;
+//    SEL sel = nil;
+//    sel = NSSelectorFromString(@"solverHUD:");
+//    Method meth = (Method)class_getClassMethod(self, sel);
+//    Imp imp = method_getImplementation(meth);
+//    if (imp) {
+//        hud = imp(self,sel,params);
+//        if (hud) {
+//            return hud;
+//        }
+//    }
+//    
+//    return nil;
 }
 
 +(CAAnimation *)GenSolverHUDShowAnimate;
 {
-    /*防止子类和父类都没有实现，使用IMP探测*/
-    SEL sel = NSSelectorFromString(@"solverHUDShowAnimate");
-    Method meth = (Method)class_getClassMethod(self, sel);
-    if (meth) {
-        MImp imp = method_getImplementation(meth);
-        CAAnimation *anio =(CAAnimation *) imp(self,sel);
-        if (anio) {
-            return anio;
-        }else
-            return [SolverHUD solverHUDShowAnimate];
-    }else
-        return [SolverHUD solverHUDShowAnimate];
+    return [self solverHUDShowAnimate];
+    /*防止子类和父类都没有实现，使用IMP探测*/  // 坑，真机会奔溃
+//    SEL sel = NSSelectorFromString(@"solverHUDShowAnimate");
+//    Method meth = (Method)class_getClassMethod(self, sel);
+//    if (meth) {
+//        MImp imp = method_getImplementation(meth);
+//        CAAnimation *anio =(CAAnimation *) imp(self,sel);
+//        if (anio) {
+//            return anio;
+//        }else
+//            return [SolverHUD solverHUDShowAnimate];
+//    }else
+//        return [SolverHUD solverHUDShowAnimate];
 }
 
 +(CAAnimation *)GenSolverHUDDisappearAnimate;
 {
-    /*防止子类和父类都没有实现，使用IMP探测*/
-    SEL sel = NSSelectorFromString(@"solverHUDDisappearAnimate");
-    Method meth = (Method)class_getClassMethod(self, sel);
-    if (meth) {
-        MImp imp = method_getImplementation(meth);
-        CAAnimation *anio =(CAAnimation *) imp(self,sel);
-        if (anio) {
-            return anio;
-        }else
-            return [SolverHUD solverHUDDisappearAnimate];
-    }else
-        return [SolverHUD solverHUDDisappearAnimate];
+    return [self solverHUDDisappearAnimate];
+    /*防止子类和父类都没有实现，使用IMP探测*/ // 坑，真机会奔溃
+//    SEL sel = NSSelectorFromString(@"solverHUDDisappearAnimate");
+//    Method meth = (Method)class_getClassMethod(self, sel);
+//    if (meth) {
+//        MImp imp = method_getImplementation(meth);
+//        CAAnimation *anio =(CAAnimation *) imp(self,sel);
+//        if (anio) {
+//            return anio;
+//        }else
+//            return [SolverHUD solverHUDDisappearAnimate];
+//    }else
+//        return [SolverHUD solverHUDDisappearAnimate];
 }
 
 /*******************************
@@ -259,6 +263,7 @@ typedef void (*SImp)(id, SEL, ...);
         default:
             break;
     }
+    [self setNeedsLayout];
     [self hudDeviceOrientation:orientation];
     [self updateViewCenter:1];
 }

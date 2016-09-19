@@ -68,4 +68,8 @@
     [alert show];
     return NO;
 }
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window
+{
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
 @end
