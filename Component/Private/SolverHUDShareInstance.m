@@ -9,6 +9,7 @@
 #import "SolverHUDShareInstance.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
+#import "SolverHUDConf.h"
 typedef void (*VImp)(id, SEL, ...);
 @interface SolverHUDShareInstance ()
 @property (nonatomic,strong) NSMutableArray *solverQueueArr;
@@ -47,46 +48,48 @@ typedef void (*VImp)(id, SEL, ...);
     return share;
 }
 
-+(void)ShowSolverHUD:(SolverHUD *)hud_
++(void)ShowSolverHUD:(SolverHUDView *)xhud_
 {
+    __weak typeof(xhud_) whud_ = xhud_;
     __weak SolverHUDShareInstance *instance = [SolverHUDShareInstance shareInstance];
-    [instance perHUD:hud_ status:SolverHUDNearMallocStatus];
+    [instance perHUD:whud_ status:SolverHUDNearMallocStatus];
     if ([instance isSuspend]) {
         return;
     }
     @synchronized(instance)
     {
-        if ([instance hudShouldAnimate:hud_]) {
-            [hud_ setValue:^(CAAnimation *anio){
+        if ([instance hudShouldAnimate:whud_]) {
+            [whud_ setValue:^(CAAnimation *anio){
                 [instance hudAnimationDidStart:anio];
             } forKey:@"animateStart"];
-            [hud_ setValue:^(CAAnimation *anio){
+            [whud_ setValue:^(CAAnimation *anio){
                 [instance hudAnimationDidStop:anio];
             } forKey:@"animateStop"];
         }
-        BOOL join = [hud_ valueForKey:@"joinQueue"];
-        if (join && ![instance.solverQueueArr containsObject:hud_]) {
-            __weak SolverHUD *lastHud;
+        BOOL join = [whud_ valueForKey:@"joinQueue"];
+        if (join && ![instance.solverQueueArr containsObject:whud_]) {
+            __weak SolverHUDView *lastHud;
             lastHud = [instance.solverQueueArr lastObject];
-            [instance.solverQueueArr addObject:hud_];
-            [instance perHUD:hud_ status:SolverHUDJoinQueueStatus];
+            [instance.solverQueueArr addObject:whud_];
+            [instance perHUD:whud_ status:SolverHUDJoinQueueStatus];
             @synchronized (lastHud) {
                 if (lastHud) {
                     dispatch_block_t blt = ^{
-                        [instance show:hud_];
+                        [instance show:whud_];
                     };
                     [lastHud setValue:blt forKey:@"showNext"];
                 }else
                 {
-                    [instance show:hud_];
+                    [instance show:whud_];
                 }
             }
         }else
-            [instance show:hud_];
+            [instance show:whud_];
     }
+    objc_removeAssociatedObjects(whud_);
 }
 
-+(void)DisappearSolverHUD:(SolverHUD *)hud_;
++(void)DisappearSolverHUD:(SolverHUDView *)hud_;
 {
     SolverHUDShareInstance *instance = [SolverHUDShareInstance shareInstance];
     @synchronized(instance)
@@ -96,14 +99,14 @@ typedef void (*VImp)(id, SEL, ...);
     }
 }
 
--(void)show:(SolverHUD *)hud_
+-(void)show:(SolverHUDView *)hud_
 {
     UIView *view = [self hudShowInView:hud_];
     [view addSubview:hud_];
     if (hud_.manimate) {
         CAAnimation *anio = [self hudStartAnio:hud_];
         if (anio) {
-            [hud_.layer addAnimation:anio forKey:@"animate"];
+            [hud_.layer addAnimation:anio forKey:KeyAppearAnimate];
         }
     }else
     {
@@ -111,24 +114,24 @@ typedef void (*VImp)(id, SEL, ...);
         Method meth = (Method)class_getInstanceMethod(object_getClass(hud_), sel);
         if (meth) {
             VImp imp = (VImp)method_getImplementation(meth);
-            imp(hud_,sel,@"animate");
+            imp(hud_,sel,KeyAppearAnimate);
         }
         
         sel = NSSelectorFromString(@"animationDidStop:finished:");
         meth = (Method)class_getInstanceMethod(object_getClass(hud_), sel);
         if (meth) {
             VImp imp = (VImp)method_getImplementation(meth);
-            imp(hud_,sel,@"animate",1);
+            imp(hud_,sel,KeyAppearAnimate,1);
         }
     }
 }
 
--(void)hidden:(SolverHUD *)hud_
+-(void)hidden:(SolverHUDView *)hud_
 {
     if (hud_.manimate) {
         CAAnimation *anio = [self hudStopAnio:hud_];
         if (anio) {
-            [hud_.layer addAnimation:anio forKey:@"disApWithAnimate"];
+            [hud_.layer addAnimation:anio forKey:KeyDisAppearAnimate];
         }
     }else
     {
@@ -136,82 +139,92 @@ typedef void (*VImp)(id, SEL, ...);
         Method meth = (Method)class_getInstanceMethod(object_getClass(hud_), sel);
         if (meth) {
             VImp imp = (VImp)method_getImplementation(meth);
-            imp(hud_,sel,@"disApWithAnimate");
+            imp(hud_,sel,KeyDisAppearAnimate);
         }
         
         sel = NSSelectorFromString(@"animationDidStop:finished:");
         meth = (Method)class_getInstanceMethod(object_getClass(hud_), sel);
         if (meth) {
             VImp imp = (VImp)method_getImplementation(meth);
-            imp(hud_,sel,@"disApWithAnimate",1);
+            imp(hud_,sel,KeyDisAppearAnimate,1);
         }
     }
 }
 
 -(void)hudAnimationDidStart:(CAAnimation *)anio
 {
-    SolverHUD *hud_ = objc_getAssociatedObject(anio, @"startAnio");
-    BOOL startanimateType = [objc_getAssociatedObject(anio, @"startanimateType") boolValue];
-    if (startanimateType==0) {
+    SolverHUDView *hud_ = objc_getAssociatedObject(anio, KeyAnimateStart);
+    if ([objc_getAssociatedObject(anio, KeyAnimationDidStartType) isEqualToString:KeyFromAppear]) {
         [self perHUD:hud_ status:SolverHUDInAnimateingStatus];
         [self tryCatchUI:hud_];
-        if (hud_.duringTime!=0) {
-            [self performSelector:@selector(hidden:) withObject:hud_ afterDelay:hud_.duringTime];
-        }
     }
-    if (startanimateType==1) {
+    if ([objc_getAssociatedObject(anio, KeyAnimationDidStartType) isEqualToString:KeyFromeDisAppear]) {
         [self perHUD:hud_ status:SolverHUDOutAnimateingStatus];
     }
+    objc_removeAssociatedObjects(anio);
 }
 
 -(void)hudAnimationDidStop:(CAAnimation *)anio
 {
-    SolverHUD *hud_ = objc_getAssociatedObject(anio, @"stopAnio");
-    BOOL stopanimateType = [objc_getAssociatedObject(anio, @"stopanimateType") boolValue];
-    if (stopanimateType==0) {
+    SolverHUDView *hud_ = objc_getAssociatedObject(anio, KeyAnimateStop);
+    if ([objc_getAssociatedObject(anio, KeyAnimationDidStartType) isEqualToString:KeyFromAppear]) {
         [self perHUD:hud_ status:SolverHUDShowingStatus];
-    }
-    if (stopanimateType==1) {
-        [self tryUnCatchUI:hud_];
-        dispatch_block_t blt = [hud_ valueForKey:@"showNext"];
-        if (blt) {
-            blt();
+        if (hud_.duringTime!=0) {
+            [self performSelector:@selector(hidden:) withObject:hud_ afterDelay:hud_.duringTime];
         }
+    }
+    if ([objc_getAssociatedObject(anio, KeyAnimationDidStartType) isEqualToString:KeyFromeDisAppear]) {
+        [self tryUnCatchUI:hud_];
         [hud_ removeFromSuperview];
         hud_.hidden = YES;
         [self perHUD:hud_ status:SolverHUDDidDisappearStatus];
         [self.solverQueueArr removeObject:hud_];
+        
+        dispatch_block_t blt = [hud_ valueForKey:@"showNext"];
+        if (blt) {
+            blt();
+        }
+        [hud_ removeObserver:hud_ forKeyPath:@"frame"];
+        [[NSNotificationCenter defaultCenter] removeObserver:hud_];
+        [hud_ setValue:^{} forKey:@"showNext"];
+        [hud_ setValue:nil forKeyPath:@"showAnio.delegate"];
+        [hud_ setValue:nil forKeyPath:@"disAAnio.delegate"];
+        [hud_ setValue:nil forKeyPath:@"showAnio"];
+        [hud_ setValue:nil forKeyPath:@"disAAnio"];
         hud_ = nil;
     }
+    
+    objc_removeAssociatedObjects(anio);
+    anio = nil;
 }
 
--(CAAnimation *)hudStartAnio:(SolverHUD *)hud_
+-(CAAnimation *)hudStartAnio:(SolverHUDView *)hud_
 {
     return [hud_ valueForKey:@"showAnio"];
 }
 
--(CAAnimation *)hudStopAnio:(SolverHUD *)hud_
+-(CAAnimation *)hudStopAnio:(SolverHUDView *)hud_
 {
     return [hud_ valueForKey:@"disAAnio"];
 }
 
--(UIView *)hudShowInView:(SolverHUD *)hud_
+-(UIView *)hudShowInView:(SolverHUDView *)hud_
 {
     return [hud_ valueForKey:@"showInview"];
 }
 
--(BOOL)hudShouldAnimate:(SolverHUD *)hud_
+-(BOOL)hudShouldAnimate:(SolverHUDView *)hud_
 {
     return [hud_ valueForKey:@"manimate"];
 }
 
--(void)perHUD:(SolverHUD *)hud_ status:(SolverHUDStatus)status_
+-(void)perHUD:(SolverHUDView *)hud_ status:(SolverHUDStatus)status_
 {
     SEL sel = NSSelectorFromString(@"setStatus:");
     objc_msgSend(hud_,sel,status_);
 }
 
--(void)tryCatchUI:(SolverHUD *)hud_
+-(void)tryCatchUI:(SolverHUDView *)hud_
 {
     if (hud_.isCatchingUserInteraction) {
         UIView *view = [self hudShowInView:hud_];
@@ -219,7 +232,7 @@ typedef void (*VImp)(id, SEL, ...);
     }
 }
 
--(void)tryUnCatchUI:(SolverHUD *)hud_
+-(void)tryUnCatchUI:(SolverHUDView *)hud_
 {
     if (hud_.isCatchingUserInteraction) {
         UIView *view = [self hudShowInView:hud_];

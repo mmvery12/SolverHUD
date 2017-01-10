@@ -11,7 +11,7 @@
 
 
 @implementation SolverHUDTextDailog
-+(SolverHUD *)solverHUD:(NSString *)text
++(SolverHUDView *)solverHUD:(NSString *)text
 {
     SolverHUDTextDailog *sf = [SolverHUDTextDailog new];
     sf.layer.cornerRadius = 8;

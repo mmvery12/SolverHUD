@@ -6,9 +6,9 @@
 //  Copyright © 2016年 com.Vacn. All rights reserved.
 //
 
-#import "SolverHUD.h"
+#import "SolverHUDView.h"
 
-@interface SolverHUDGIF : SolverHUD
+@interface SolverHUDGIF : SolverHUDView
 +(id)ScheduledShowInView:(UIView *)view withImages:(NSArray *)imgs;
 
 +(id)ShowInView:(UIView *)view  withImages:(NSArray *)imgs;

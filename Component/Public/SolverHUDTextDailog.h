@@ -6,9 +6,9 @@
 //  Copyright © 2016年 com.Vacn. All rights reserved.
 //
 
-#import "SolverHUD.h"
+#import "SolverHUDView.h"
 
-@interface SolverHUDTextDailog : SolverHUD
+@interface SolverHUDTextDailog : SolverHUDView
 +(id)ScheduledShowInView:(UIView *)view withText:(NSString *)text;
 
 +(id)ShowInView:(UIView *)view  withText:(NSString *)text;

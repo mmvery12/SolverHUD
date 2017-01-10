@@ -6,16 +6,16 @@
 //  Copyright © 2016年 com.Vacn. All rights reserved.
 //
 
-#import "SolverHUD.h"
+#import "SolverHUDView.h"
 #import "SolverHUDShareInstance.h"
 #import <objc/runtime.h>
 #import <objc/objc.h>
 #import <objc/message.h>
-
+#import "SolverHUDConf.h"
 typedef void(^Animate)(CAAnimation *anio);
 typedef Animate AnimateDidStartBlock;
 typedef Animate AnimateDidStopBlock;
-@interface SolverHUD ()
+@interface SolverHUDView ()
 {
     CGPoint originXY;
     UIDeviceOrientation originOrientation;
@@ -35,10 +35,10 @@ typedef Animate AnimateDidStopBlock;
 
 
 
-typedef SolverHUD *(*Imp)(id, SEL, ...);
+typedef SolverHUDView *(*Imp)(id, SEL, ...);
 typedef CAKeyframeAnimation * (*MImp)(id, SEL, ...);
 typedef void (*SImp)(id, SEL, ...);
-@implementation SolverHUD
+@implementation SolverHUDView
 @synthesize isCatchingUserInteraction = _isCatchingUserInteraction;
 @synthesize position = _position;
 @synthesize status = _status;
@@ -47,7 +47,7 @@ typedef void (*SImp)(id, SEL, ...);
  
  *******************************/
 
-+(SolverHUD *)solverHUD:(id)params
++(SolverHUDView *)solverHUD:(id)params
 {
     return nil;
 }
@@ -76,7 +76,7 @@ typedef void (*SImp)(id, SEL, ...);
 /*******************************
  
  *******************************/
-+(SolverHUD *)GenSolverHUD:(id)params
++(SolverHUDView *)GenSolverHUD:(id)params
 {
     return [self solverHUD:params];
     /*防止子类和父类都没有实现，使用IMP探测*/  // 坑，真机会奔溃
@@ -193,11 +193,11 @@ typedef void (*SImp)(id, SEL, ...);
         NSLog(@"[error]:*** SolverHUD super view cannot nil");
         return nil;
     }
-    SolverHUD* hud = [self GenSolverHUD:params];
+    SolverHUDView* hud = [self GenSolverHUD:params];
     [hud addObserver:hud forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     [[NSNotificationCenter defaultCenter] addObserver:hud selector:@selector(orientation:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     if (hud==nil) {
-        NSLog(@"[error]:*** +(SolverHUD *)solverHUD must to be overwrite!");
+        NSLog(@"[error]:*** +(SolverHUDView *)solverHUD must to be overwrite!");
         return nil;
     }
     hud.position = position;
@@ -264,7 +264,7 @@ typedef void (*SImp)(id, SEL, ...);
             break;
     }
     [self setNeedsLayout];
-    [self hudDeviceOrientation:orientation];
+    [self hudDeviceOrientation:(UIDeviceOrientation)orientation];
     [self updateViewCenter:1];
 }
 
@@ -317,12 +317,13 @@ typedef void (*SImp)(id, SEL, ...);
 -(void)animationDidStart:(CAAnimation *)anim
 {
     if (self.animateStart) {
-        objc_setAssociatedObject(anim, @"startAnio", self, OBJC_ASSOCIATION_ASSIGN);
-        if ([self.layer animationForKey:@"animate"]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:@"animate"])) {
-            objc_setAssociatedObject(anim, @"startanimateType", @"0", OBJC_ASSOCIATION_COPY);
+        objc_removeAssociatedObjects(anim);
+        objc_setAssociatedObject(anim, KeyAnimateStart, self, OBJC_ASSOCIATION_ASSIGN);
+        if ([self.layer animationForKey:KeyAppearAnimate]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:KeyAppearAnimate])) {
+            objc_setAssociatedObject(anim, KeyAnimationDidStartType, KeyFromAppear, OBJC_ASSOCIATION_ASSIGN);
         }
-        if ([self.layer animationForKey:@"disApWithAnimate"]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:@"disApWithAnimate"])) {
-            objc_setAssociatedObject(anim, @"startanimateType", @"1", OBJC_ASSOCIATION_COPY);
+        if ([self.layer animationForKey:KeyDisAppearAnimate]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:KeyDisAppearAnimate])) {
+            objc_setAssociatedObject(anim, KeyAnimationDidStartType, KeyFromeDisAppear, OBJC_ASSOCIATION_ASSIGN);
         }
         self.animateStart(anim);
     }
@@ -332,12 +333,13 @@ typedef void (*SImp)(id, SEL, ...);
 {
     if (flag) {
         if (self.animateStop) {
-            objc_setAssociatedObject(anim, @"stopAnio", self, OBJC_ASSOCIATION_ASSIGN);
-            if ([self.layer animationForKey:@"animate"]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:@"animate"])) {
-                objc_setAssociatedObject(anim, @"stopanimateType", @"0", OBJC_ASSOCIATION_COPY);
+            objc_removeAssociatedObjects(anim);
+            objc_setAssociatedObject(anim, KeyAnimateStop, self, OBJC_ASSOCIATION_ASSIGN);
+            if ([self.layer animationForKey:KeyAppearAnimate]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:KeyAppearAnimate])) {
+                objc_setAssociatedObject(anim, KeyAnimationDidStopType, KeyFromAppear, OBJC_ASSOCIATION_ASSIGN);
             }
-            if ([self.layer animationForKey:@"disApWithAnimate"]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:@"disApWithAnimate"])) {
-                objc_setAssociatedObject(anim, @"stopanimateType", @"1", OBJC_ASSOCIATION_COPY);
+            if ([self.layer animationForKey:KeyDisAppearAnimate]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:KeyDisAppearAnimate])) {
+                objc_setAssociatedObject(anim, KeyAnimationDidStopType, KeyFromeDisAppear, OBJC_ASSOCIATION_ASSIGN);
             }
             self.animateStop(anim);
         }
@@ -351,7 +353,7 @@ typedef void (*SImp)(id, SEL, ...);
 
 @end
 
-@implementation SolverHUD (Params)
+@implementation SolverHUDView (Params)
 
 +(id)ScheduledShowInView:(UIView *)view params:(id)params;
 {

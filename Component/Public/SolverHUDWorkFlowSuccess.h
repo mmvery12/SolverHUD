@@ -6,8 +6,8 @@
 //  Copyright © 2016年 com.Vacn. All rights reserved.
 //
 
-#import "SolverHUD.h"
+#import "SolverHUDView.h"
 
-@interface SolverHUDWorkFlowSuccess : SolverHUD
+@interface SolverHUDWorkFlowSuccess : SolverHUDView
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "SolverHUDConf.h"
 /*******************************
  view 属性： frame position showanimate  dismissanimate duringtime等
  *******************************/
@@ -26,7 +27,7 @@ typedef NS_ENUM(NSInteger,SolverHUDStatus) {
 };
 
 #import "SolverHUDDelegate.h"
-@interface SolverHUD : UIView<SolverHUDDelegate>
+@interface SolverHUDView : UIView<SolverHUDDelegate>
 @property (nonatomic,readonly,assign)BOOL isCatchingUserInteraction;//禁用响应链
 @property (nonatomic,readonly,assign)SolverHUDPosition position;//当前设置的显示位置
 @property (nonatomic,readonly,assign)SolverHUDStatus status;//当前UI的状态
@@ -60,7 +61,7 @@ typedef NS_ENUM(NSInteger,SolverHUDStatus) {
 @end
 
 
-@interface SolverHUD (Params)
+@interface SolverHUDView (Params)
 +(id)ScheduledShowInView:(UIView *)view params:(id)params;
 +(id)ShowInView:(UIView *)view params:(id)params;
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SolverHUD.h"
+#import "SolverHUDView.h"
 /*******************************
     view show & dismiss 动作
  *******************************/
@@ -20,7 +20,7 @@ typedef void (^VoidBlock) (void);
 }
 -(void)setSuspended:(BOOL)suspend;
 -(BOOL)isSuspend;
-+(void)ShowSolverHUD:(SolverHUD *)hud;
-+(void)DisappearSolverHUD:(SolverHUD *)hud;
++(void)ShowSolverHUD:(SolverHUDView *)hud;
++(void)DisappearSolverHUD:(SolverHUDView *)hud;
 @end
 

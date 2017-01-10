@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@class SolverHUD;
+@class SolverHUDView;
 @protocol SolverHUDDelegate <NSObject>
 /*******************************
  data source
  *******************************/
 @optional
 
-+(SolverHUD *)solverHUD:(id)params;
++(SolverHUDView *)solverHUD:(id)params;
 
 +(CAAnimation *)solverHUDShowAnimate;
 +(CAAnimation *)solverHUDDisappearAnimate;

@@ -13,7 +13,7 @@
 @end
 
 @implementation SolverHUDGIF
-+(SolverHUD *)solverHUD:(id)params
++(SolverHUDView *)solverHUD:(id)params
 {
     SolverHUDGIF *sf = [SolverHUDGIF new];
     sf.layer.cornerRadius = 8;
@@ -43,7 +43,7 @@
 -(void)animatebegin
 {
     UIImageView *imageView = (id)[self viewWithTag:10086];
-    [imageView.layer addAnimation:[self keyAniamte] forKey:@"animate"];
+    [imageView.layer addAnimation:[self keyAniamte] forKey:KeyAppearAnimate];
 }
 
 -(void)animateend
