@@ -343,13 +343,19 @@ typedef void (*SImp)(id, SEL, ...);
         }
     }
 }
+
+-(void)removeThisHud;
+{
+    [SolverHUDShareInstance DisappearSolverHUD:self];
+}
+
 @end
 
 @implementation SolverHUD (Params)
 
 +(id)ScheduledShowInView:(UIView *)view params:(id)params;
 {
-    return [self cVi:view p:SolverHUDMiddlePosition c:YES a:YES j:YES d:300 parms:params];
+    return [self cVi:view p:SolverHUDMiddlePosition c:YES a:YES j:YES d:3 parms:params];
 }
 +(id)ShowInView:(UIView *)view params:(id)params;
 {

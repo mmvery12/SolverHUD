@@ -17,12 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSURL * launchUrl = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
-    NSString *aa = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
-    if (launchUrl) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:aa message:launchUrl.absoluteString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alert show];
-    }
+
     return YES;
 }
 

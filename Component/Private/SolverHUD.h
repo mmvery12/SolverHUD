@@ -54,6 +54,7 @@ typedef NS_ENUM(NSInteger,SolverHUDStatus) {
 
 +(id)ScheduledShowInWindow;
 +(id)ShowInWindow;
+-(void)removeThisHud;
 @end
 
 
