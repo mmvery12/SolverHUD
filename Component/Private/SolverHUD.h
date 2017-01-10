@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+/*******************************
+ view 属性： frame position showanimate  dismissanimate duringtime等
+ *******************************/
 typedef NS_ENUM(NSInteger,SolverHUDPosition){
     SolverHUDTopPosition,//after top around 64px
     SolverHUDMiddlePosition,//center

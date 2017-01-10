@@ -91,6 +91,7 @@ typedef void (*VImp)(id, SEL, ...);
     SolverHUDShareInstance *instance = [SolverHUDShareInstance shareInstance];
     @synchronized(instance)
     {
+        [NSObject cancelPreviousPerformRequestsWithTarget:instance selector:@selector(hidden:) object:hud_];
         [instance hidden:hud_];
     }
 }

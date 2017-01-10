@@ -207,9 +207,9 @@ typedef void (*SImp)(id, SEL, ...);
     hud.manimate = animate;
     if (animate) {
         hud.showAnio = [self GenSolverHUDShowAnimate];
-        hud.showAnio.delegate = hud;
+        hud.showAnio.delegate = (id)hud;
         hud.disAAnio = [self GenSolverHUDDisappearAnimate];
-        hud.disAAnio.delegate = hud;
+        hud.disAAnio.delegate = (id)hud;
     }
     hud.duringTime = during;
     [hud updateViewCenter:0];

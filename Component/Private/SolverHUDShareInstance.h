@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "SolverHUD.h"
+/*******************************
+    view show & dismiss 动作
+ *******************************/
 #define animatetime 0.2
 @class SolverHUDWindow;
 typedef void (^VoidBlock) (void);
