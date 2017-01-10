@@ -27,7 +27,9 @@ typedef void (*VImp)(id, SEL, ...);
 
 -(void)setSuspended:(BOOL)suspend
 {
-    _isSuspend = suspend;
+    @synchronized (self) {
+        _isSuspend = suspend;
+    }
 }
 
 -(BOOL)isSuspend
