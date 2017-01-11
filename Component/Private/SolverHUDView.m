@@ -12,7 +12,7 @@
 #import <objc/objc.h>
 #import <objc/message.h>
 #import "SolverHUDConf.h"
-typedef void(^Animate)(CAAnimation *anio);
+typedef void(^Animate)(CAAnimation *anio,SolverHUDView *hud,NSString *type);
 typedef Animate AnimateDidStartBlock;
 typedef Animate AnimateDidStopBlock;
 @interface SolverHUDView ()
@@ -205,11 +205,12 @@ typedef void (*SImp)(id, SEL, ...);
     hud.tryCatcheUI = tryCatchUI;
     hud.joinQueue = join;
     hud.manimate = animate;
+    __weak typeof(hud) whud = hud;
     if (animate) {
         hud.showAnio = [self GenSolverHUDShowAnimate];
-        hud.showAnio.delegate = (id)hud;
+        hud.showAnio.delegate = (id)whud;
         hud.disAAnio = [self GenSolverHUDDisappearAnimate];
-        hud.disAAnio.delegate = (id)hud;
+        hud.disAAnio.delegate = (id)whud;
     }
     hud.duringTime = during;
     [hud updateViewCenter:0];
@@ -317,15 +318,15 @@ typedef void (*SImp)(id, SEL, ...);
 -(void)animationDidStart:(CAAnimation *)anim
 {
     if (self.animateStart) {
-        objc_removeAssociatedObjects(anim);
-        objc_setAssociatedObject(anim, KeyAnimateStart, self, OBJC_ASSOCIATION_ASSIGN);
+        NSString *type = nil;
         if ([self.layer animationForKey:KeyAppearAnimate]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:KeyAppearAnimate])) {
-            objc_setAssociatedObject(anim, KeyAnimationDidStartType, KeyFromAppear, OBJC_ASSOCIATION_ASSIGN);
+            type = KeyFromAppear;
         }
         if ([self.layer animationForKey:KeyDisAppearAnimate]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:KeyDisAppearAnimate])) {
-            objc_setAssociatedObject(anim, KeyAnimationDidStartType, KeyFromeDisAppear, OBJC_ASSOCIATION_ASSIGN);
+            type = KeyFromeDisAppear;
         }
-        self.animateStart(anim);
+        
+        self.animateStart(anim,self,type);
     }
 }
 
@@ -333,15 +334,16 @@ typedef void (*SImp)(id, SEL, ...);
 {
     if (flag) {
         if (self.animateStop) {
-            objc_removeAssociatedObjects(anim);
-            objc_setAssociatedObject(anim, KeyAnimateStop, self, OBJC_ASSOCIATION_ASSIGN);
+            NSString *type = nil;
             if ([self.layer animationForKey:KeyAppearAnimate]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:KeyAppearAnimate])) {
-                objc_setAssociatedObject(anim, KeyAnimationDidStopType, KeyFromAppear, OBJC_ASSOCIATION_ASSIGN);
+                type = KeyFromAppear;
+                [self.layer removeAnimationForKey:KeyAppearAnimate];
             }
             if ([self.layer animationForKey:KeyDisAppearAnimate]==anim || ([anim isKindOfClass:[NSString class]] && [(NSString *)anim isEqualToString:KeyDisAppearAnimate])) {
-                objc_setAssociatedObject(anim, KeyAnimationDidStopType, KeyFromeDisAppear, OBJC_ASSOCIATION_ASSIGN);
+                type = KeyFromeDisAppear;
+                [self.layer removeAnimationForKey:KeyDisAppearAnimate];
             }
-            self.animateStop(anim);
+            self.animateStop(anim,self,type);
         }
     }
 }
@@ -388,5 +390,10 @@ typedef void (*SImp)(id, SEL, ...);
     return [self cVi:[UIApplication sharedApplication].keyWindow p:SolverHUDMiddlePosition c:YES a:YES j:NO d:0 parms:params];
 }
 
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"frame"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

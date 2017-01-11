@@ -32,10 +32,10 @@
 
 -(void)hudStatusDidChange:(SolverHUDStatus)status;
 {
-    if (status == SolverHUDShowingStatus) {
+    if (status == SolverHUDInAnimateingStatus) {
         [self animatebegin];
     }
-    if (status == SolverHUDOutAnimateingStatus) {
+    if (status == SolverHUDDidDisappearStatus) {
         [self animateend];
     }
 }
@@ -43,13 +43,13 @@
 -(void)animatebegin
 {
     UIImageView *imageView = (id)[self viewWithTag:10086];
-    [imageView.layer addAnimation:[self keyAniamte] forKey:KeyAppearAnimate];
+    [imageView.layer addAnimation:[self keyAniamte] forKey:@"myrepearanimate"];
 }
 
 -(void)animateend
 {
     UIImageView *imageView = (id)[self viewWithTag:10086];
-    [imageView.layer removeAllAnimations];
+    [imageView.layer removeAnimationForKey:@"myrepearanimate"];
 }
 
 -(CAKeyframeAnimation *)keyAniamte
